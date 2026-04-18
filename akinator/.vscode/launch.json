@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "akinator.Main",
+            "vmArgs": "--module-path e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}
