@@ -1,64 +1,84 @@
 package Entities;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import Utils.Functions;
 
 public class GameEngine {
     public DatabaseManager db;
     private String currentPlayer;
-    private ArrayList<Integer> possibleCandidateIds;
+    private ArrayList<Integer> possibleCharactersIds;
     private ArrayList<Question> askedQuestions;
 
     private int currentQuestionCount = 0;
 
-    public GameEngine(String currentPlayer) {
+    public GameEngine(String currentPlayer) throws SQLException {
         this.db = new DatabaseManager();
         this.currentPlayer = currentPlayer;
         this.askedQuestions = new ArrayList<>();
-        this.possibleCandidateIds = new ArrayList<>();
+        this.possibleCharactersIds = new ArrayList<>();
     }
 
     // ! Methods
-    public Question getBestQuestion() {
-        if (currentQuestionCount == 0)
-            return getFirstQuestion();
-
-        ArrayList<Question> availableQuestions = getAvailableQuestions();
-        System.out.println(availableQuestions.size());
+    public Character getFoundedCharacter() throws SQLException {
+        if (this.possibleCharactersIds.size() == 1) {
+            return this.db.getCharacterById(possibleCharactersIds.get(0));
+        }
 
         return null;
     }
 
-    public void filterCharacters(int questionId, int answer) {
-        this.possibleCandidateIds = this.db.getCharacterIdsByAnswer(questionId, answer);
+    public Question getBestQuestion() throws SQLException {
+        Question question;
+
+        if (currentQuestionCount == 0) {
+            question = this.db.getListQuestions().get(0);
+
+        } else {
+            ArrayList<Question> availableQuestions = getAvailableQuestions();
+            ArrayList<FilteredQuestion> filteredQuestions = getFilteredQuestions(availableQuestions);
+
+            Functions.printList(availableQuestions);
+
+            question = getMinCharactersCountQuestion(filteredQuestions);
+        }
+
+        this.currentQuestionCount += 1;
+        this.askedQuestions.add(question);
+
+        return question;
+    }
+
+    public void filterCharacters(int questionId, int answer) throws SQLException {
+        ArrayList<Integer> newPossibleCharactersIds = this.db.getCharacterIdsByAnswer(questionId, answer);
+
+        if (this.possibleCharactersIds.size() == 0)
+            this.possibleCharactersIds = newPossibleCharactersIds;
+        else
+            this.possibleCharactersIds = Functions.intersection(this.possibleCharactersIds, newPossibleCharactersIds);
     }
 
     public boolean checkWinCondition() {
-        if (this.possibleCandidateIds.size() == 1)
+        if (this.possibleCharactersIds.size() == 1)
             return true;
 
         return false;
     }
 
     // ! Utils Methods
-    private ArrayList<Question> getAvailableQuestions() {
+    private ArrayList<Question> getAvailableQuestions() throws SQLException {
         Question lastAskedQuestion = this.askedQuestions.get(currentQuestionCount - 1);
-        Integer parentId = lastAskedQuestion.getId();
+        Integer parentQuestionId = lastAskedQuestion.getParentQuestionId();
+        ArrayList<Question> questions = this.db.getQuestionsWithParentId(parentQuestionId);
 
-        if (lastAskedQuestion.getParentQuestionId() != null)
-            parentId = lastAskedQuestion.getParentQuestionId();
-
-        ArrayList<Question> childrenQuestionsIds = this.db.getQuestionsWithParentId(parentId);
-
-        if (childrenQuestionsIds.size() != 0)
-            return childrenQuestionsIds;
-
-        return getNotAskedQuestions();
+        return getNotAskedQuestions(questions);
     }
 
-    private ArrayList<Question> getNotAskedQuestions() {
+    private ArrayList<Question> getNotAskedQuestions(ArrayList<Question> questions) {
         ArrayList<Question> notAskedQuestions = new ArrayList<>();
 
-        for (Question question : this.db.getListQuestions()) {
+        for (Question question : questions) {
             if (!this.askedQuestions.contains(question))
                 notAskedQuestions.add(question);
         }
@@ -66,19 +86,44 @@ public class GameEngine {
         return notAskedQuestions;
     }
 
-    private Question getFirstQuestion() {
-        ArrayList<Question> allQuestions = this.db.getListQuestions();
+    private ArrayList<FilteredQuestion> getFilteredQuestions(ArrayList<Question> availableQuestions)
+            throws SQLException {
+        /*
+         * This method eliminate questions which has not a possible characters
+         * by checking the old answers
+         * return list of question + characters count
+         */
 
-        Question question = allQuestions.get(0);
-        this.askedQuestions.add(question);
-        this.currentQuestionCount += 1;
+        ArrayList<FilteredQuestion> filteredQuestions = new ArrayList<>();
 
-        return question;
+        for (Question question : availableQuestions) {
+            ArrayList<Integer> yesPossibleCharacters = this.db.getCharacterIdsByAnswer(question.getId(), 1);
+            int intersectionCount = Functions.intersection(possibleCharactersIds, yesPossibleCharacters).size();
+
+            if (intersectionCount != 0)
+                filteredQuestions.add(new FilteredQuestion(question, intersectionCount));
+        }
+
+        return filteredQuestions;
+    }
+
+    private Question getMinCharactersCountQuestion(ArrayList<FilteredQuestion> filteredQuestions) {
+        if (filteredQuestions.size() == 0)
+            return null;
+
+        FilteredQuestion filteredQuestion = filteredQuestions.get(0);
+
+        for (FilteredQuestion fq : filteredQuestions) {
+            if (fq.getCharactersCount() < filteredQuestion.getCharactersCount())
+                filteredQuestion = fq;
+        }
+
+        return filteredQuestion.getQuestion();
     }
 
     // ! Getters & Setters
     public ArrayList<Integer> getPossibleCandidateIds() {
-        return this.possibleCandidateIds;
+        return this.possibleCharactersIds;
     }
 
     public ArrayList<Question> getAskedQuestions() {
@@ -93,13 +138,13 @@ public class GameEngine {
         this.currentPlayer = currentPlayer;
     }
 
-    public void setPossibleCandidateIds(ArrayList<Integer> possibleCandidateIds) {
-        this.possibleCandidateIds = possibleCandidateIds;
+    public void setPossibleCandidateIds(ArrayList<Integer> possibleCharactersIds) {
+        this.possibleCharactersIds = possibleCharactersIds;
     }
 
     @Override
     public String toString() {
-        return "GameEngine [possibleCandidateIds=" + possibleCandidateIds.size() + ", askedQuestions="
+        return "GameEngine [possibleCharactersIds=" + possibleCharactersIds.size() + ", askedQuestions="
                 + askedQuestions.size()
                 + ", currentPlayer=" + currentPlayer + "]";
     }

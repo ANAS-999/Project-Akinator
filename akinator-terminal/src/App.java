@@ -1,5 +1,7 @@
 import Entities.GameEngine;
 import Entities.Question;
+import Entities.Character;
+
 import java.util.Scanner;
 
 public class App {
@@ -8,7 +10,7 @@ public class App {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        System.out.println("Akinator\n");
 
         Scanner scanner = new Scanner(System.in);
         GameEngine gameEngine = new GameEngine("Anas");
@@ -35,8 +37,25 @@ public class App {
          * }
          */
 
-        System.out.println(gameEngine.getBestQuestion());
-        System.out.println(gameEngine.getBestQuestion());
+        while (!gameEngine.checkWinCondition()) {
+            Question question = gameEngine.getBestQuestion();
+
+            if (question == null)
+                break;
+
+            System.out.println("\n" + question);
+            int answer = scanner.nextInt();
+
+            gameEngine.filterCharacters(question.getId(), answer);
+            System.out.println(gameEngine.getPossibleCandidateIds());
+        }
+
+        Character character = gameEngine.getFoundedCharacter();
+
+        if (character != null)
+            System.out.println(character);
+        else
+            System.out.println("Character not found!");
 
         gameEngine.db.close();
     }
