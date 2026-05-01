@@ -7,7 +7,7 @@ public class DatabaseManager {
 
     private Connection connection;
     private ArrayList<Question> listQuestions;
-    private static final String DB_URL = "jdbc:sqlite:akinator.db";
+    private static final String DB_URL = "jdbc:sqlite:akinator_no_dobl.db";
 
     public DatabaseManager() throws SQLException {
         connect();

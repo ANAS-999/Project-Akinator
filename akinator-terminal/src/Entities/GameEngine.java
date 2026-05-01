@@ -8,14 +8,17 @@ import Utils.Functions;
 public class GameEngine {
     public DatabaseManager db;
     private String currentPlayer;
+    private ArrayList<Integer> answers;
     private ArrayList<Integer> possibleCharactersIds;
     private ArrayList<Question> askedQuestions;
 
+    private Integer parentQuestionId;
     private int currentQuestionCount = 0;
 
     public GameEngine(String currentPlayer) throws SQLException {
         this.db = new DatabaseManager();
         this.currentPlayer = currentPlayer;
+        this.answers = new ArrayList<>();
         this.askedQuestions = new ArrayList<>();
         this.possibleCharactersIds = new ArrayList<>();
     }
@@ -39,7 +42,7 @@ public class GameEngine {
             ArrayList<Question> availableQuestions = getAvailableQuestions();
             ArrayList<FilteredQuestion> filteredQuestions = getFilteredQuestions(availableQuestions);
 
-            Functions.printList(availableQuestions);
+            Functions.printListQuestionsIds(availableQuestions);
 
             question = getMinCharactersCountQuestion(filteredQuestions);
         }
@@ -57,6 +60,8 @@ public class GameEngine {
             this.possibleCharactersIds = newPossibleCharactersIds;
         else
             this.possibleCharactersIds = Functions.intersection(this.possibleCharactersIds, newPossibleCharactersIds);
+
+        this.answers.add(answer);
     }
 
     public boolean checkWinCondition() {
@@ -68,10 +73,16 @@ public class GameEngine {
 
     // ! Utils Methods
     private ArrayList<Question> getAvailableQuestions() throws SQLException {
+        Integer lastAnswer = this.answers.get(currentQuestionCount - 1);
         Question lastAskedQuestion = this.askedQuestions.get(currentQuestionCount - 1);
-        Integer parentQuestionId = lastAskedQuestion.getParentQuestionId();
-        ArrayList<Question> questions = this.db.getQuestionsWithParentId(parentQuestionId);
+        ArrayList<Question> childrenQuestions = this.db.getQuestionsWithParentId(lastAskedQuestion.getId());
 
+        if (childrenQuestions.size() != 0 && lastAnswer == 1) {
+            this.parentQuestionId = lastAskedQuestion.getId();
+            return childrenQuestions;
+        }
+
+        ArrayList<Question> questions = this.db.getQuestionsWithParentId(parentQuestionId);
         return getNotAskedQuestions(questions);
     }
 
@@ -134,12 +145,8 @@ public class GameEngine {
         return this.currentPlayer;
     }
 
-    public void setCurrentPlayer(String currentPlayer) {
-        this.currentPlayer = currentPlayer;
-    }
-
-    public void setPossibleCandidateIds(ArrayList<Integer> possibleCharactersIds) {
-        this.possibleCharactersIds = possibleCharactersIds;
+    public ArrayList<Integer> getAnswers() {
+        return answers;
     }
 
     @Override
