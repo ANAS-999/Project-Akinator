@@ -3,7 +3,7 @@ package Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import Entities.Question;
+import Models.Question;
 
 public class Functions {
     public static void printList(List<?> list) {

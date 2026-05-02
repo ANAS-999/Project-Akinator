@@ -1,4 +1,4 @@
-package Entities;
+package Models;
 
 public class FilteredQuestion {
     private Question question;

@@ -1,8 +1,12 @@
-package Entities;
+package GameEngines;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import Managers.DatabaseManager;
+import Models.FilteredQuestion;
+import Models.Question;
+import Models.Character;
 import Utils.Functions;
 
 public class GameEngine {

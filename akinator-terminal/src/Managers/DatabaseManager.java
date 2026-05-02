@@ -1,7 +1,10 @@
-package Entities;
+package Managers;
 
 import java.sql.*;
 import java.util.ArrayList;
+
+import Models.Question;
+import Models.Character;
 
 public class DatabaseManager {
 
