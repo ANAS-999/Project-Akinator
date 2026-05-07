@@ -1,0 +1,141 @@
+.root {
+    -fx-padding: 16px;
+    -fx-background-color: linear-gradient(to bottom, #4a3f6b, #2d2850, #1a1a2e);
+}
+
+.progress-bar {
+    -fx-padding: 15px;
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+.progress-text {
+    -fx-font-size: 16px;
+    -fx-letter-spacing: 2px;
+    -fx-text-fill: #f0d000;
+}
+
+.genie-container {
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(240, 208, 0, 0.3), 20, 0.3, 0, 5);
+}
+
+.question-container {
+    -fx-padding: 20px 30px;
+    -fx-background-color: rgba(0, 0, 0, 0.4);
+    -fx-background-radius: 20px;
+    -fx-border-color: rgba(240, 208, 0, 0.3);
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+}
+
+.question-text {
+    -fx-font-size: 18px;
+    -fx-line-spacing: 4px;
+}
+
+.buttons-container {
+    -fx-spacing: 10px;
+}
+
+Button.main-btn {
+    -fx-font-size: 20px;
+    -fx-font-family: "Impact", "Arial Black", sans-serif;
+    -fx-min-width: 160px;
+    -fx-min-height: 60px;
+    -fx-background-radius: 35px;
+    -fx-border-radius: 35px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.3, 0, 4);
+}
+
+Button.yes-btn {
+    -fx-background-color: linear-gradient(to bottom, #f0d000, #d4b800, #b8a000);
+    -fx-text-fill: #2d2850;
+    -fx-border-color: #ffe44d;
+    -fx-border-width: 3px;
+}
+
+Button.yes-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffe44d, #f0d000, #d4b800);
+    -fx-effect: dropshadow(gaussian, rgba(240, 208, 0, 0.6), 15, 0.4, 0, 6);
+}
+
+Button.yes-btn:pressed {
+    -fx-translate-y: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.2, 0, 2);
+}
+
+Button.no-btn {
+    -fx-background-color: linear-gradient(to bottom, #e64a6a, #cc3d5a, #b0304a);
+    -fx-text-fill: white;
+    -fx-border-color: #ff6a8a;
+    -fx-border-width: 3px;
+}
+
+Button.no-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #ff6a8a, #e64a6a, #cc3d5a);
+    -fx-effect: dropshadow(gaussian, rgba(230, 74, 106, 0.6), 15, 0.4, 0, 6);
+}
+
+Button.no-btn:pressed {
+    -fx-translate-y: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.2, 0, 2);
+}
+
+Button.sub-btn {
+    -fx-font-size: 15px;
+    -fx-font-family: "Impact", "Arial Black", sans-serif;
+    -fx-min-width: 115px;
+    -fx-min-height: 48px;
+    -fx-background-radius: 28px;
+    -fx-border-radius: 28px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0.2, 0, 3);
+}
+
+Button.probably-btn {
+    -fx-background-color: linear-gradient(to bottom, #5a9fd4, #4a8fc4, #3a7fb4);
+    -fx-text-fill: white;
+    -fx-border-color: #7ab8e4;
+    -fx-border-width: 2px;
+}
+
+Button.probably-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #7ab8e4, #5a9fd4, #4a8fc4);
+    -fx-effect: dropshadow(gaussian, rgba(90, 159, 212, 0.5), 10, 0.3, 0, 4);
+}
+
+Button.probably-btn:pressed {
+    -fx-translate-y: 2px;
+}
+
+Button.dontknow-btn {
+    -fx-background-color: linear-gradient(to bottom, #888888, #787878, #686868);
+    -fx-text-fill: white;
+    -fx-border-color: #a8a8a8;
+    -fx-border-width: 2px;
+}
+
+Button.dontknow-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #a8a8a8, #888888, #787878);
+}
+
+Button.dontknow-btn:pressed {
+    -fx-translate-y: 2px;
+}
+
+Button.probablynot-btn {
+    -fx-background-color: linear-gradient(to bottom, #d4a35a, #c4934a, #b4833a);
+    -fx-text-fill: white;
+    -fx-border-color: #e4c37a;
+    -fx-border-width: 2px;
+}
+
+Button.probablynot-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #e4c37a, #d4a35a, #c4934a);
+    -fx-effect: dropshadow(gaussian, rgba(212, 163, 90, 0.5), 10, 0.3, 0, 4);
+}
+
+Button.probablynot-btn:pressed {
+    -fx-translate-y: 2px;
+}

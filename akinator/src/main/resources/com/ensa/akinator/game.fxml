@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane stylesheets="@styles/game.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.GameController">
+    <children>
+        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="140" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+            <children>
+                <HBox alignment="CENTER" styleClass="progress-bar">
+                    <children>
+                        <Label styleClass="progress-text" text="Question N° 1" textFill="#f0d000">
+                            <font>
+                                <Font name="Impact" size="16.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </HBox>
+
+                <VBox alignment="CENTER" spacing="10.0" styleClass="genie-container">
+                    <children>
+                        <ImageView fitHeight="280.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@assets/akinator-ask.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </VBox>
+
+                <VBox alignment="CENTER" styleClass="question-container">
+                    <children>
+                        <Label fx:id="questionLabel" styleClass="question-text" text="Question?" textAlignment="CENTER" textFill="white" wrapText="true">
+                            <font>
+                                <Font name="Arial" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+
+        <VBox alignment="BOTTOM_CENTER" spacing="12.0" styleClass="buttons-container" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15">
+            <children>
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <Button onAction="#onYesClicked" styleClass="main-btn ,yes-btn" text="Yes" />
+                        <Button onAction="#onNoClicked" styleClass="main-btn ,no-btn" text="No" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="8.0">
+                    <children>
+                        <Button onAction="#onProbablyClicked" styleClass="sub-btn, probably-btn" text="Probably" />
+                        <Button onAction="#onDontKnowClicked" styleClass="sub-btn ,dontknow-btn" text="Don't know" />
+                        <Button onAction="#onProbablyNotClicked" styleClass="sub-btn ,probablynot-btn" text="Probably not" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,67 +1,62 @@
+import Entities.GameEngine;
+import Entities.Question;
+import Entities.Character;
+
 import java.util.Scanner;
 
-import Exceptions.AIConnectionFailedException;
-import Models.Character;
-import Models.Question;
-import GameEngines.*;
-
 public class App {
-    static void play(Scanner scanner) {
-        try {
-            GameEngine gameEngine = new GameEngine("Anas");
-
-            while (!gameEngine.checkWinCondition()) {
-                Question question = gameEngine.getBestQuestion();
-
-                if (question == null)
-                    break;
-
-                System.out.println("\n" + question);
-                int answer = scanner.nextInt();
-
-                gameEngine.filterCharacters(question.getId(), answer);
-                System.out.println("Possible (" + gameEngine.getPossibleCandidateIds().size() + ") : "
-                        + gameEngine.getPossibleCandidateIds());
-            }
-
-            Character character = gameEngine.getFoundedCharacter();
-
-            if (character != null)
-                System.out.println(character);
-            else
-                System.out.println("Character not found!");
-
-            gameEngine.db.close();
-
-        } catch (Exception e) {
-            System.out.println("ERROR : " + e.getMessage());
-        }
+    static void printLine() {
+        System.out.println();
     }
 
-    static void playAI(Scanner scanner) {
-        try {
-            AIGameEngine aiGameEngine = new AIGameEngine();
-            String question = aiGameEngine.initGame();
-            System.out.println(question);
+    public static void main(String[] args) throws Exception {
+        System.out.println("Akinator\n");
 
-            while (true) {
-                int answer = scanner.nextInt();
-                question = aiGameEngine.getNextQuestion(answer);
+        Scanner scanner = new Scanner(System.in);
+        GameEngine gameEngine = new GameEngine("Anas");
 
-                System.out.println("\n" + question);
-            }
+        /*
+         * printLine();
+         * for (Question question : gameEngine.db.loadAllQuestions())
+         * System.out.println(question);
+         * printLine();
+         */
 
-        } catch (AIConnectionFailedException e) {
-            System.out.println(e.getMessage());
+        /*
+         * boolean isWin = false;
+         * while (!isWin) {
+         * Question question = gameEngine.getBestQuestion();
+         * 
+         * System.out.print("\n" + question + "\nYes = 1, No = 0 : ");
+         * int answer = scanner.nextInt();
+         * 
+         * gameEngine.filterCharacters(question.getId(), answer);
+         * isWin = gameEngine.checkWinCondition();
+         * 
+         * System.out.println(gameEngine.getPossibleCandidateIds());
+         * }
+         */
+
+        while (!gameEngine.checkWinCondition()) {
+            Question question = gameEngine.getBestQuestion();
+
+            if (question == null)
+                break;
+
+            System.out.println("\n" + question);
+            int answer = scanner.nextInt();
+
+            gameEngine.filterCharacters(question.getId(), answer);
+            System.out.println(gameEngine.getPossibleCandidateIds());
         }
 
-    }
+        Character character = gameEngine.getFoundedCharacter();
 
-    public static void main(String[] args) {
-        System.out.println("Akinator");
+        if (character != null)
+            System.out.println(character);
+        else
+            System.out.println("Character not found!");
 
-        try (Scanner scanner = new Scanner(System.in)) {
-            playAI(scanner);
-        }
+        gameEngine.db.close();
     }
 }

@@ -3,13 +3,10 @@
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\sqlite-jdbc\\sqlite-jdbc-3.53.0.0.jar",
-        "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\java-json-jar\\json-20251224.jar"
+        "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\sqlite-jdbc\\sqlite-jdbc-3.53.0.0.jar"
     ],
     "cSpell.words": [
         "akinator",
-        "dobl",
-        "nemotron",
         "pstmt"
     ]
 }

@@ -1,0 +1,33 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx.media.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx.swing.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx.web.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.base.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.controls.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.fxml.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.graphics.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.media.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.swing.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx.web.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\lib\\javafx-swt.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.base.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.controls.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.fxml.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.graphics.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.media.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.swing.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx.web.jar",
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-sdk-11\\lib\\javafx-swt.jar"
+        ],
+        "exclude": [
+            "e:\\Programming\\School\\ENSA\\GI-S6\\Java\\Java-Project-Akinator\\javafx-swt.jar"
+        ]
+    }
+}
