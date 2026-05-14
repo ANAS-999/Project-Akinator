@@ -35,7 +35,8 @@ public class Question {
 	public int getParentQuestionId() {
 		return parentQuestionId;
 	}
-
+	
+	// ================Incremrnt score================
 	public void setParentQuestionId(int parentQuestionId) {
 		this.parentQuestionId = parentQuestionId;
 	}
