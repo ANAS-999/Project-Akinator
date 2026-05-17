@@ -1,7 +1,6 @@
 package modele;
 
 public class Player {
-	private String name;
 	private String idPlayer;
 	private String userName;
 	private String passWord;
@@ -42,16 +41,6 @@ public class Player {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	public String getName() {
-		return name;
-	}
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 
 	public String getPassWord() {
 		return passWord;
