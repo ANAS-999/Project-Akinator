@@ -9,10 +9,11 @@ public class Player {
 	private static int nbPlayer = 1;
 	
 	// ==============Constructeur================
-	public Player(String useName) {
+	public Player(String userName, String passWord) {
 
-		this.userName = useName;
-		idPlayer = useName + "nbPlayer";
+		this.userName = userName;
+		this.passWord = passWord;
+		idPlayer = userName + nbPlayer;
 		nbPlayer++;
 	}
 

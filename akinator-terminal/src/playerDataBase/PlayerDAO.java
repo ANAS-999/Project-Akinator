@@ -25,7 +25,7 @@ public class PlayerDAO {
             
             pstmt.setString(1, player.getIdPlayer());
             pstmt.setString(2, player.getUserName());
-            pstmt.setString(2, player.getPassWord());
+            pstmt.setString(3, player.getPassWord());
             pstmt.executeUpdate();
             
         } catch (SQLException e) {
