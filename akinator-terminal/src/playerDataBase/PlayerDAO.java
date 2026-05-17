@@ -12,7 +12,7 @@ import model.Player; // Import de ta classe Player
 public class PlayerDAO {
 
 	// Informations de connexion (à adapter selon ta BDD)
-    private String url = "jdbc:mysql://localhost:3306/akinator_db";
+    private String url = "jdbc:mysql://localhost:3306/player_db";
     private String user = "root";
     private String password = "";
 

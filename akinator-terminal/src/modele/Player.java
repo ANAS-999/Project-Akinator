@@ -1,9 +1,12 @@
 package modele;
 
 public class Player {
+	private String name;
 	private String idPlayer;
 	private String userName;
+	private String passWord;
 	private int score;
+	private int gamesNb;
 	private static int nbPlayer = 1;
 	
 	// ==============Constructeur================
@@ -40,6 +43,36 @@ public class Player {
 		this.score = score;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+
+
+	public int getGamesNb() {
+		return gamesNb;
+	}
+
+
+	public void setGamesNb(int gamesNb) {
+		this.gamesNb = gamesNb;
+	}
+
+
 	// ===============Score increment==================
 	public void incrementScore(int increment) {
 		score += increment;
