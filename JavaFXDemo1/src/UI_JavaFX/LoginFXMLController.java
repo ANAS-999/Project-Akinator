@@ -3,6 +3,7 @@ package UI_JavaFX;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+
+import playerDataBase.*;
 
 public class LoginFXMLController implements Initializable {
 
@@ -32,23 +35,31 @@ public class LoginFXMLController implements Initializable {
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        try {
-            // 1. Charger la nouvelle vue
-            URL mainSceneUrl = getClass().getResource("DemoFXML.fxml");
+        // 1. Récupérer les données saisies
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
-            Parent root = FXMLLoader.load(mainSceneUrl);
+        // 2. Vérifier les identifiants avec ta méthode de BDD
+        if (PlayerDAO.isLoginValid(username, password)) {
 
-            // 2. Récupérer le Stage actuel via l'événement du clic
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // --- SUCCÈS : On change de scène ---
+            try {
+                URL viewUrl = Objects.requireNonNull(getClass().getResource("DemoFXML.fxml"), "Fichier DemoFXML introuvable.");
+                Parent root = FXMLLoader.load(viewUrl);
 
-            // 3. Remplacer la scène
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
 
-        } catch (IOException e) {
-            System.out.println("❌ Erreur lors de l'ouverture de MainScene.fxml :");
-            e.printStackTrace();
+            } catch (IOException | NullPointerException e) {
+                System.err.println("❌ Erreur de chargement de l'interface : " + e.getMessage());
+                e.printStackTrace();
+            }
+
+        } else {
+            // --- ÉCHEC : On affiche le message d'erreur ---
+            errorLabel.setText("Incorrect password");
+//            errorLabel.setSize("-fx-text-fill: red;"); // Rend le texte rouge pour bien signaler l'erreur
         }
     }
 }

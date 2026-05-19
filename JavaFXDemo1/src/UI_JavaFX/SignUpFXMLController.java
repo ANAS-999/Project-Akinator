@@ -26,6 +26,8 @@ public class SignUpFXMLController {
         // Ici, tu ajouteras ton code pour sauvegarder dans la base de données
     }
 
+    
+
     @FXML
     private void goToLogin(ActionEvent event) {
         // Code pour changer de scène et retourner au login

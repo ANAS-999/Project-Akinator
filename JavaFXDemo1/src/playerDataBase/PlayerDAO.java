@@ -64,7 +64,7 @@ public class PlayerDAO {
         return false; // On a parcouru toute la liste sans le trouver
     }
 
-    public boolean isLoginValid(String username, String providedPassword) {
+    public static boolean isLoginValid(String username, String providedPassword) {
         // On ne sélectionne QUE le mot de passe pour être plus rapide
         String query = "SELECT password FROM players WHERE username = ?";
 
@@ -90,5 +90,30 @@ public class PlayerDAO {
 
         // Retourne false si le joueur n'existe pas, si le mot de passe est faux, ou s'il y a une erreur BDD
         return false;
+    }
+
+    // Méthode pour INSCRIRE un nouveau joueur
+    public static boolean registerPlayer(String nom, String username, String userPassword) {
+        if (containUserName(username)) {
+            return false;
+        }
+
+        String query = "INSERT INTO players (name, username, password) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, nom);
+            pstmt.setString(2, username);
+            pstmt.setString(3, userPassword);
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("❌ Erreur lors de l'enregistrement en BDD : " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
     }
 }

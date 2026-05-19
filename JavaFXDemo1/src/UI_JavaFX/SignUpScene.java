@@ -20,7 +20,7 @@ public class SignUpScene extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
         Scene scene = new Scene(root,350, 630);
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Sign Up !");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
