@@ -22,27 +22,19 @@ public class LoginFXMLController implements Initializable {
     @FXML
     private void handleLogin(ActionEvent event) {
         try {
-            System.out.println("--- Clic détecté sur le bouton Sign up ! ---");
-            
             // 1. Charger la nouvelle vue
             URL mainSceneUrl = getClass().getResource("DemoFXML.fxml");
-            if (mainSceneUrl == null) {
-                System.out.println("❌ Erreur de chemin : Le fichier MainScene.fxml est introuvable !");
-                return;
-            }
-            
+
             Parent root = FXMLLoader.load(mainSceneUrl);
-            
+
             // 2. Récupérer le Stage actuel via l'événement du clic
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            
+
             // 3. Remplacer la scène
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            
-            System.out.println("--- Changement de scène réussi ! ---");
-            
+
         } catch (IOException e) {
             System.out.println("❌ Erreur lors de l'ouverture de MainScene.fxml :");
             e.printStackTrace();

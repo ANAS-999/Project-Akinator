@@ -34,24 +34,32 @@ public class PlayerDAO {
     }
 
     // Méthode pour RÉCUPÉRER tous les joueurs (Read)
-//    public List<Player> getAllPlayers() {
-//        List<Player> players = new ArrayList<>();
-//        String query = "SELECT * FROM players";
-//
-//        try (Connection conn = DriverManager.getConnection(url, user, password);
-//             PreparedStatement pstmt = conn.prepareStatement(query);
-//             ResultSet rs = pstmt.executeQuery()) {
-//
-//            while (rs.next()) {
-//                // On crée un objet Player à partir des données de la BDD
-//                Player p = new Player(rs.getString("username"), rs.getInt("score"));
-//                players.add(p);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return players;
-//    }
-    
+    public static List<Player> getAllPlayers() {
+        List<Player> players = new ArrayList<>();
+        String query = "SELECT * FROM players";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                // On crée un objet Player à partir des données de la BDD
+                Player p = new Player(rs.getString("username"), rs.getString("password"));
+                players.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return players;
+    }
+
+    public static boolean contientPseudo(String pseudoRecherche) {
+        for (Player p : PlayerDAO.getAllPlayers()) {
+            if (p.getUsername().equals(pseudoRecherche)) {
+                return true; // Le joueur existe !
+            }
+        }
+        return false; // On a parcouru toute la liste sans le trouver
+    }
     
 }
