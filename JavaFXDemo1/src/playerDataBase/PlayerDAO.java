@@ -53,9 +53,11 @@ public class PlayerDAO {
         return players;
     }
 
-    public static boolean contientPseudo(String pseudoRecherche) {
+    public static boolean containUser(String pseudoRecherche) {
+        if (PlayerDAO.getAllPlayers() == null) { return false; }
+
         for (Player p : PlayerDAO.getAllPlayers()) {
-            if (p.getUsername().equals(pseudoRecherche)) {
+            if (p.getUserName().equals(pseudoRecherche)) {
                 return true; // Le joueur existe !
             }
         }
