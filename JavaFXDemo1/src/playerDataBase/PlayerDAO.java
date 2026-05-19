@@ -63,5 +63,32 @@ public class PlayerDAO {
         }
         return false; // On a parcouru toute la liste sans le trouver
     }
-    
+
+    public boolean isLoginValid(String username, String providedPassword) {
+        // On ne sélectionne QUE le mot de passe pour être plus rapide
+        String query = "SELECT password FROM players WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            // On remplace le "?" par le nom d'utilisateur fourni
+            pstmt.setString(1, username);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // Si rs.next() est vrai, le joueur existe dans la base
+                if (rs.next()) {
+                    String storedPassword = rs.getString("password");
+
+                    // On compare le mot de passe de la BDD avec celui tapé par l'utilisateur
+                    return storedPassword.equals(providedPassword);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la vérification du login : " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // Retourne false si le joueur n'existe pas, si le mot de passe est faux, ou s'il y a une erreur BDD
+        return false;
+    }
 }
