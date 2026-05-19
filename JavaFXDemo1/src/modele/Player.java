@@ -1,6 +1,7 @@
 package modele;
 
 public class Player {
+    private String name;
 	private String idPlayer;
 	private String userName;
 	private String passWord;
@@ -9,8 +10,9 @@ public class Player {
 	private static int nbPlayer = 1;
 	
 	// ==============Constructeur================
-	public Player(String userName, String passWord) {
+	public Player(String name, String userName, String passWord) {
 
+        this.name = name;
 		this.userName = userName;
 		this.passWord = passWord;
 		idPlayer = userName + nbPlayer;

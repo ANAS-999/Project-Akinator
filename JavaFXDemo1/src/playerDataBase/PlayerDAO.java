@@ -44,7 +44,7 @@ public class PlayerDAO {
 
             while (rs.next()) {
                 // On crée un objet Player à partir des données de la BDD
-                Player p = new Player(rs.getString("username"), rs.getString("password"));
+                Player p = new Player(rs.getString("name"), rs.getString("username"), rs.getString("password"));
                 players.add(p);
             }
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class PlayerDAO {
         return players;
     }
 
-    public static boolean containUser(String pseudoRecherche) {
+    public static boolean containUserName(String pseudoRecherche) {
         if (PlayerDAO.getAllPlayers() == null) { return false; }
 
         for (Player p : PlayerDAO.getAllPlayers()) {
