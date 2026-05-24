@@ -22,28 +22,24 @@ public class LoginFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // On laisse cette méthode vide pour éviter tout conflit au démarrage
     }
 
     @FXML
-    private TextField usernameField;   // Le champ du nom d'utilisateur
+    private TextField usernameField;
 
     @FXML
-    private PasswordField passwordField; // Le champ du mot de passe
+    private PasswordField passwordField;
 
     @FXML
-    private Label errorLabel;          // Un Label vide sous les champs pour afficher l'erreur
+    private Label errorLabel;
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        // 1. Récupérer les données saisies
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        // 2. Vérifier les identifiants avec ta méthode de BDD
         if (PlayerDAO.isLoginValid(username, password)) {
 
-            // --- SUCCÈS : On change de scène ---
             try {
                 URL viewUrl = Objects.requireNonNull(getClass().getResource("DemoFXML.fxml"), "Fichier DemoFXML introuvable.");
                 Parent root = FXMLLoader.load(viewUrl);
@@ -53,39 +49,32 @@ public class LoginFXMLController implements Initializable {
                 stage.show();
 
             } catch (IOException | NullPointerException e) {
-                System.err.println("❌ Erreur de chargement de l'interface : " + e.getMessage());
+                System.err.println(" Erreur de chargement de l'interface : " + e.getMessage());
                 e.printStackTrace();
             }
 
         } else {
-            // --- ÉCHEC : On affiche le message d'erreur ---
             errorLabel.setText("Incorrect password");
             errorLabel.setStyle("-fx-text-fill: red;"); // Rend le texte rouge pour bien signaler l'erreur
         }
     }
 
-    public class LoginController {
 
-        @FXML
-        private void goToSignUp(ActionEvent event) {
-            try {
-                // 1. Charger le fichier FXML de la page d'inscription
-                Parent signUpRoot = FXMLLoader.load(getClass().getResource("/UI_JavaFX/SignUp.fxml"));
+    @FXML
+    private void goToSignUp(ActionEvent event) {
+        try {
+            Parent signUpRoot = FXMLLoader.load(getClass().getResource("/UI_JavaFX/SignUp.fxml"));
 
-                // 2. Récupérer le Stage (la fenêtre) actuel grâce à l'événement
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                // 3. Créer la nouvelle scène avec la page d'inscription
-                Scene scene = new Scene(signUpRoot);
+            Scene scene = new Scene(signUpRoot);
 
-                // 4. Afficher la nouvelle scène dans la fenêtre
-                stage.setScene(scene);
-                stage.show();
+            stage.setScene(scene);
+            stage.show();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Impossible de charger la page d'inscription : " + e.getMessage());
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Impossible de charger la page d'inscription : " + e.getMessage());
         }
     }
 }

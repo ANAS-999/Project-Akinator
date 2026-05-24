@@ -55,7 +55,7 @@
                 maxWidth="Infinity" />
 
         <!-- Lien connexion -->
-        <Hyperlink onAction="#goToLogin" text="DÃŠjÃ  un compte ? Se connecter" />
+        <Hyperlink onAction="#goToLogin" text="Deja un compte ? Se connecter" />
 
     </children>
 </VBox>

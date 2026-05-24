@@ -1,11 +1,18 @@
 package UI_JavaFX;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import playerDataBase.PlayerDAO;
+
+import java.io.IOException;
 
 public class SignUpFXMLController {
 
@@ -38,17 +45,14 @@ public class SignUpFXMLController {
         boolean isRegistered = PlayerDAO.registerPlayer(nom, username, password);
 
         if (isRegistered) {
-            System.out.println("✅ Inscription réussie pour : " + nom + " (" + username + ")");
             if (statusLabel != null) {
                 statusLabel.setText("Inscription réussie !");
                 statusLabel.setStyle("-fx-text-fill: green;");
             }
 
-            // Optionnel : Tu peux appeler directement ta méthode pour rediriger vers le Login
-            // goToLogin(event);
 
         } else {
-            System.out.println("❌ Échec de l'inscription. Pseudo déjà pris.");
+            System.out.println(" Échec de l'inscription. Pseudo déjà pris.");
             if (statusLabel != null) {
                 statusLabel.setText("Ce nom d'utilisateur existe déjà.");
                 statusLabel.setStyle("-fx-text-fill: red;");
@@ -58,7 +62,20 @@ public class SignUpFXMLController {
 
     @FXML
     private void goToLogin(ActionEvent event) {
-        // Code pour changer de scène et retourner au login
-        System.out.println("--- Retour à la page de Login ---");
+        try {
+
+            Parent loginRoot = FXMLLoader.load(getClass().getResource("/UI_JavaFX/LoginFXML.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            Scene scene = new Scene(loginRoot);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erreur lors du chargement de la page de connexion : " + e.getMessage());
+        }
     }
 }
