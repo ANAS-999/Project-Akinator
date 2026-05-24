@@ -63,4 +63,29 @@ public class LoginFXMLController implements Initializable {
             errorLabel.setStyle("-fx-text-fill: red;"); // Rend le texte rouge pour bien signaler l'erreur
         }
     }
+
+    public class LoginController {
+
+        @FXML
+        private void goToSignUp(ActionEvent event) {
+            try {
+                // 1. Charger le fichier FXML de la page d'inscription
+                Parent signUpRoot = FXMLLoader.load(getClass().getResource("/UI_JavaFX/SignUp.fxml"));
+
+                // 2. Récupérer le Stage (la fenêtre) actuel grâce à l'événement
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // 3. Créer la nouvelle scène avec la page d'inscription
+                Scene scene = new Scene(signUpRoot);
+
+                // 4. Afficher la nouvelle scène dans la fenêtre
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Impossible de charger la page d'inscription : " + e.getMessage());
+            }
+        }
+    }
 }
