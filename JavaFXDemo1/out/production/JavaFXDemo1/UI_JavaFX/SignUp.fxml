@@ -8,36 +8,54 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="630.0" prefWidth="350.0" spacing="10.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI_JavaFX.SignUpFXMLController">
+<VBox styleClass="root-vbox"
+      alignment="CENTER"
+      prefHeight="630.0" prefWidth="350.0"
+      stylesheets="@../resources/style.css"
+      xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="UI_JavaFX.SignUpFXMLController">
     <children>
-        <Label text="Create account">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font></Label>
 
-        <VBox alignment="CENTER" fillWidth="false">
+        <!-- Titre -->
+        <Label text="Create account" styleClass="label-title">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Label>
+
+        <!-- Champ Nom -->
+        <VBox styleClass="field-group" alignment="CENTER" spacing="6">
             <children>
                 <Label text="Nom :" />
-                <TextField fx:id="nomField" promptText="Enter your name" />
+                <TextField fx:id="nomField" promptText="Enter your name" maxWidth="Infinity" />
             </children>
         </VBox>
 
-        <VBox alignment="CENTER" fillWidth="false">
+        <!-- Champ Username -->
+        <VBox styleClass="field-group" alignment="CENTER" spacing="6">
             <children>
                 <Label text="Username :" />
-                <TextField fx:id="userField" promptText="Chose a username" />
+                <TextField fx:id="userField" promptText="Choose a username" maxWidth="Infinity" />
             </children>
         </VBox>
 
-        <VBox alignment="CENTER" fillWidth="false">
+        <!-- Champ Password -->
+        <VBox styleClass="field-group" alignment="CENTER" spacing="6">
             <children>
                 <Label text="Password :" />
-                <PasswordField fx:id="passField" prefHeight="25.0" prefWidth="151.0" promptText="Create password" />
+                <PasswordField fx:id="passField" promptText="Create password" maxWidth="Infinity" />
             </children>
         </VBox>
 
-        <Button fx:id="signUpButton" onAction="#handleSignUp" text="S'inscrire" />
+        <!-- Bouton -->
+        <Button fx:id="signUpButton"
+                onAction="#handleSignUp"
+                text="S'inscrire"
+                maxWidth="Infinity" />
 
-        <Hyperlink onAction="#goToLogin" text="Déjà un compte ? Se connecter" />
+        <!-- Lien connexion -->
+        <Hyperlink onAction="#goToLogin" text="DÃŠjÃ  un compte ? Se connecter" />
+
     </children>
 </VBox>

@@ -5,6 +5,6 @@ import javafx.application.Application;
 public class Launcher {
     public static void main(String[] args) {
         // Démarre l'application en contournant les restrictions de module JavaFX
-        Application.launch(SignUpScene.class, args);
+        Application.launch(LoginScene.class, args);
     }
 }
