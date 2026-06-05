@@ -1,0 +1,93 @@
+.root {
+    -fx-padding: 0;
+    -fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298, #1a1a2e);
+}
+
+.victory-header {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 26px;
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.4), 10, 0, 0, 0);
+}
+
+.result-title {
+    -fx-font-size: 18px;
+    -fx-font-family: "Georgia Italic", serif;
+    -fx-text-fill: white;
+}
+
+.character-card-frame {
+    -fx-background-color: #d4af37, #1a1a2e;
+    -fx-background-insets: 0, 4;
+    -fx-background-radius: 12;
+    -fx-padding: 12px;
+    -fx-max-width: 224px;
+    -fx-max-height: 224px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 20, 0.3, 0, 8);
+}
+
+.character-name {
+    -fx-font-size: 28px;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-text-fill: #fcd12a;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0, 0, 2);
+    -fx-text-alignment: center;
+}
+
+.genie-celebrate {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0, 0, 8);
+}
+
+.result-buttons {
+    -fx-padding: 110px 0 0 0;
+}
+
+.char-primary-btn {
+    -fx-background-color: #9a7d23, #ffe891, linear-gradient(to bottom, #fcd12a, #d4af37);
+    -fx-background-insets: 0, 0 0 4 0, 1 1 5 1;
+    -fx-background-radius: 30;
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-min-width: 260px;
+    -fx-min-height: 48px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 3);
+}
+
+.char-primary-btn:hover {
+    -fx-background-color: #b08d26, #fff0b3, linear-gradient(to bottom, #ffdf00, #fcd12a);
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.45), 12, 0, 0, 4);
+}
+
+.char-primary-btn:pressed {
+    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
+    -fx-translate-y: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
+}
+
+.char-secondary-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 30;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-min-width: 260px;
+    -fx-min-height: 45px;
+    -fx-cursor: hand;
+}
+
+.char-secondary-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.char-secondary-btn:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
