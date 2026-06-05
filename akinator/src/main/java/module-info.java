@@ -3,6 +3,7 @@ module com.ensa.akinator {
     requires javafx.fxml;
     requires org.json;
     requires java.sql;
+    requires javafx.media;
 
     opens com.ensa.akinator to javafx.fxml;
     exports com.ensa.akinator;

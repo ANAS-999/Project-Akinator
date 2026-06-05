@@ -11,54 +11,43 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/game.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.CharacterController">
+<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/character.css" xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.CharacterController">
     <children>
-        <VBox alignment="TOP_CENTER" spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+        <VBox alignment="CENTER" spacing="22.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="character-root">
             <children>
-                <HBox alignment="CENTER" styleClass="progress-bar">
-                    <children>
-                        <Label styleClass="progress-text" text="BRAVO !">
-                            <font>
-                                <Font name="Impact" size="14.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </HBox>
+                <Label styleClass="victory-header" text="🎉 GREAT GUESS! 🎉"/>
 
-                <VBox alignment="CENTER" spacing="30.0" styleClass="character-result-container" VBox.vgrow="ALWAYS">
-                    <children>
-                        <Label styleClass="result-title" text="I think of..." textFill="WHITE" />
-                        
-                        <StackPane styleClass="character-image-frame" maxWidth="220" maxHeight="220">
-                            <children>
-                                <ImageView fx:id="characterImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@assets/akinator.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                        </StackPane>
+                <Label styleClass="result-title" text="I think of..."/>
 
-                        <Label fx:id="characterLabel" styleClass="character-name" text="CHARACTER NAME" textAlignment="CENTER" wrapText="true" />
-                        
-                        <ImageView fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" styleClass="genie-image">
+                <StackPane styleClass="character-card-frame" maxWidth="220" maxHeight="220">
+                    <children>
+                        <ImageView fx:id="characterImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true"
+                                   preserveRatio="false">
                             <image>
-                                <Image url="@assets/akinator.png" />
+                                <Image url="@assets/character.png"/>
                             </image>
                         </ImageView>
                     </children>
-                </VBox>
+                </StackPane>
 
-                <VBox alignment="BOTTOM_CENTER" spacing="10.0" styleClass="result-buttons">
+                <Label fx:id="characterLabel" styleClass="character-name" text="CHARACTER NAME" textAlignment="CENTER"
+                       wrapText="true"/>
+
+                <VBox alignment="CENTER" spacing="12.0" styleClass="result-buttons">
                     <children>
-                        <Button onAction="#onPlayAgainClicked" styleClass="akinator-btn" text="PLAY AGAIN" />
-                        <Button onAction="#onHomeClicked" styleClass="akinator-btn" text="BACK TO HOME" />
+                        <Button onAction="#onPlayAgainClicked" styleClass="char-primary-btn" text="PLAY AGAIN"/>
+                        <Button onAction="#onHomeClicked" styleClass="char-secondary-btn" text="BACK TO HOME"/>
                     </children>
                     <VBox.margin>
-                        <Insets bottom="40.0" />
+                        <Insets top="10.0"/>
                     </VBox.margin>
                 </VBox>
             </children>
+            <padding>
+                <Insets top="30.0" bottom="30.0" left="25.0" right="25.0"/>
+            </padding>
         </VBox>
     </children>
 </AnchorPane>

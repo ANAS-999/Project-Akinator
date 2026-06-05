@@ -29,7 +29,7 @@ public class AIManager {
             conn.setDoOutput(true);
 
             JSONObject payload = new JSONObject();
-            payload.put("model", model2Name);
+            payload.put("model", modelName);
             payload.put("input", message);
 
             try (OutputStream os = conn.getOutputStream()) {
@@ -53,6 +53,7 @@ public class AIManager {
                         .getJSONObject(0)
                         .getString("text");
             } else {
+                System.out.println("API Error: Response Code " + conn.getResponseMessage());
                 throw new AIConnectionFailedException("API Error: Response Code " + responseCode);
             }
 

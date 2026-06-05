@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/aigame.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.AiGameController">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="game-root">
+            <children>
+                <ImageView fx:id="genieImage" fitHeight="260.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" styleClass="genie-image">
+                    <image>
+                        <Image url="@assets/akinator-ask.png" />
+                    </image>
+                </ImageView>
+                
+                <HBox alignment="CENTER" spacing="0">
+                    <children>
+                        <Region styleClass="new-bubble-tail" />
+                        <HBox alignment="CENTER_LEFT" styleClass="new-question-container">
+                            <children>
+                                <VBox alignment="CENTER" styleClass="question-num-box" minWidth="45.0" prefWidth="45.0">
+                                    <children>
+                                        <Label text="◆" styleClass="diamond-icon" />
+                                        <Label fx:id="stepLabel" styleClass="question-num-text" text="1" />
+                                        <Label text="◆" styleClass="diamond-icon" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" styleClass="question-text-box">
+                                    <children>
+                                        <Label fx:id="questionLabel" styleClass="question-text" text="Loading AI Akinator..." wrapText="true" minHeight="-Infinity" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+                <VBox alignment="CENTER" spacing="10.0" styleClass="choices-container">
+                    <children>
+                        <Button onAction="#onYesClicked" styleClass="choice-btn" text="Yes" />
+                        <Button onAction="#onNoClicked" styleClass="choice-btn" text="No" />
+                        <Button onAction="#onDontKnowClicked" styleClass="choice-btn" text="Don't know" />
+                        <Button onAction="#onProbablyClicked" styleClass="choice-btn" text="Probably" />
+                        <Button onAction="#onProbablyNotClicked" styleClass="choice-btn" text="Probably not" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets top="40.0" bottom="30.0" left="25.0" right="25.0" />
+            </padding>
+        </VBox>
+        <Button onAction="#handleHomeAction" styleClass="home-btn-icon" text="🏠"
+                AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+    </children>
+</AnchorPane>

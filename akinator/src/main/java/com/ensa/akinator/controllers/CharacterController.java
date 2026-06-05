@@ -29,6 +29,8 @@ public class CharacterController {
         setCharacterName();
         setCharacterImage();
         applyAnimations();
+
+        // Global.player.addScore();
     }
 
     private void applyAnimations() {
@@ -57,7 +59,11 @@ public class CharacterController {
             try {
                 if (imageUrl != null && !imageUrl.isEmpty()) {
                     System.out.println(imageUrl);
-                    loadSecuredWebImage(imageUrl);
+                    if (imageUrl.startsWith("http")) {
+                        loadSecuredWebImage(imageUrl);
+                    } else {
+                        characterImage.setImage(new Image(getClass().getResourceAsStream(imageUrl)));
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Error loading image: " + e.getMessage());

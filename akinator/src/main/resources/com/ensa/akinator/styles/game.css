@@ -1,117 +1,133 @@
 .root {
     -fx-padding: 0;
-    -fx-background-color: linear-gradient(to bottom, #1e3c72, #2a5298, #1a1a2e);
+    -fx-background-color: linear-gradient(to bottom, #b9cde3, #dbe6f6);
 }
 
-.main-container {
-    -fx-padding: 20px;
+.new-bubble-tail {
+    -fx-background-color: #194350;
+    -fx-shape: "M 10 0 L 0 10 L 10 20 Z";
+    -fx-min-width: 12px;
+    -fx-max-width: 12px;
+    -fx-min-height: 18px;
+    -fx-max-height: 18px;
+    -fx-translate-x: 1px;
 }
 
-.progress-bar {
-    -fx-padding: 10px 0;
-    -fx-background-color: rgba(255, 255, 255, 0.1);
-    -fx-background-radius: 0 0 20 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+.new-question-container {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 4);
+    -fx-max-width: 420px;
+    -fx-min-width: 420px;
 }
 
-.progress-text {
-    -fx-font-size: 14px;
+.question-num-box {
+    -fx-background-color: #194350;
+    -fx-padding: 12px 0;
+    -fx-spacing: 2px;
+}
+
+.diamond-icon {
+    -fx-text-fill: rgba(255, 255, 255, 0.4);
+    -fx-font-size: 8px;
+}
+
+.question-num-text {
+    -fx-text-fill: white;
     -fx-font-family: "Impact", sans-serif;
-    -fx-text-fill: #fcd12a;
-    -fx-letter-spacing: 1px;
+    -fx-font-size: 16px;
 }
 
-.genie-container {
-    -fx-padding: 0;
+.question-text-box {
+    -fx-background-color: linear-gradient(to bottom, #ffffff, #eef2f5);
+    -fx-padding: 15px 20px;
+}
+
+.question-text {
+    -fx-font-size: 17px;
+    -fx-font-family: "Segoe UI Semibold", "Arial", sans-serif;
+    -fx-text-fill: #194350;
+    -fx-line-spacing: 1px;
+}
+
+.choices-container {
+    -fx-background-color: rgba(219, 230, 246, 0.65);
+    -fx-border-color: white;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 20px;
+    -fx-spacing: 12px;
+    -fx-max-width: 420px;
+    -fx-min-width: 420px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 3);
+}
+
+.choice-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #194350;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 17px;
+    -fx-cursor: hand;
+    -fx-padding: 10px 20px;
+    -fx-alignment: center;
+    -fx-min-width: 380px;
+    -fx-max-width: 380px;
+}
+
+.choice-btn:hover {
+    -fx-text-fill: #0d262f;
+    -fx-background-color: rgba(25, 67, 80, 0.08);
+    -fx-background-radius: 6px;
+}
+
+.choice-btn:pressed {
+    -fx-background-color: rgba(25, 67, 80, 0.15);
 }
 
 .genie-image {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0, 0, 10);
 }
 
-.question-bubble {
-    -fx-background-color: white;
-    -fx-background-radius: 25px;
-    -fx-padding: 20px 25px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 5);
-    -fx-max-width: 400px;
-    -fx-margin: 10px 0;
-}
-
-.question-text {
-    -fx-font-size: 19px;
-    -fx-font-family: "Segoe UI Semibold", "Arial", sans-serif;
-    -fx-text-fill: #2c3e50;
-    -fx-line-spacing: 2px;
-}
-
-.character-result-container {
-    -fx-padding: 30px;
-}
-
-.result-title {
-    -fx-font-size: 24px;
-    -fx-font-family: "Georgia Italic", serif;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 2);
-}
-
-.character-image-frame {
-    -fx-background-color: white;
-    -fx-padding: 8px;
-    -fx-background-radius: 15px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 20, 0, 0, 10);
-}
-
-.character-name {
-    -fx-font-size: 32px;
-    -fx-font-family: "Impact", sans-serif;
-    -fx-text-fill: #fcd12a;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 5, 0, 0, 2);
-    -fx-text-alignment: center;
-}
-
-.result-buttons {
-    -fx-padding: 20px 0;
-}
-
-.buttons-container {
-    -fx-padding: 15px 0;
-}
-
-.akinator-btn {
-    -fx-background-color: linear-gradient(to bottom, #112d4e, #091a2f);
-    -fx-border-color: #3f68a8;
-    -fx-border-width: 2px;
-    -fx-border-radius: 30px;
-    -fx-background-radius: 30px;
-    -fx-text-fill: white;
-    -fx-font-size: 15px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+.home-btn-icon {
+    /* Premium 3D Golden theme */
+    -fx-background-color: 
+        #9a7d23, /* 3D bottom shadow */
+        #ffe891, /* Inner light border bevel */
+        linear-gradient(to bottom, #fcd12a, #d4af37); /* Front face */
+    -fx-background-insets: 
+        0,         
+        0 0 3 0,   
+        1 1 4 1;   
+    -fx-background-radius: 8;
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 16px;
+    -fx-min-width: 38px;
+    -fx-max-width: 38px;
+    -fx-min-height: 38px;
+    -fx-max-height: 38px;
+    -fx-alignment: center;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 3);
-    -fx-transition: all 0.3s ease;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
 }
 
-.akinator-btn.main-btn {
-    -fx-min-width: 180px;
-    -fx-min-height: 50px;
-    -fx-font-size: 18px;
+.home-btn-icon:hover {
+    -fx-background-color: 
+        #b08d26, 
+        #fff0b3, 
+        linear-gradient(to bottom, #ffdf00, #fcd12a);
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.4), 8, 0, 0, 3);
 }
 
-.akinator-btn.sub-btn {
-    -fx-min-width: 135px;
-    -fx-min-height: 45px;
-    -fx-font-size: 14px;
+.home-btn-icon:pressed {
+    -fx-background-insets: 
+        0, 
+        0 0 1 0, 
+        1 1 2 1;
+    -fx-translate-y: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
 }
-
-
-.akinator-btn:hover {
-    -fx-background-color: linear-gradient(to bottom, #1a4171, #112d4e);
-    -fx-border-color: #fcd12a;
-    -fx-text-fill: #fcd12a;
-    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.4), 15, 0, 0, 0);
-}
-
-

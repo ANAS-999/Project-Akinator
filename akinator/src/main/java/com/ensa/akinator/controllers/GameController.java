@@ -2,6 +2,7 @@ package com.ensa.akinator.controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 import com.ensa.akinator.App;
 import com.ensa.akinator.GameEngines.GameEngine;
@@ -50,7 +51,7 @@ public class GameController {
 
     private void updateStepLabel() {
         if (stepLabel != null) {
-            stepLabel.setText("QUESTION N° " + currentStep);
+            stepLabel.setText(String.valueOf(currentStep));
         }
     }
 
@@ -79,24 +80,29 @@ public class GameController {
         play(AnswerEnum.PROBABLY_NOT);
     }
 
+    @FXML
+    private void handleHomeAction() throws IOException {
+        App.setRoot("primary");
+    }
+
     // ! Methods
     private void returnToPrimary() {
         Platform.runLater(() -> {
             try {
                 App.setRoot("primary");
-            } catch (IOException e) {
+            } catch (IOException ignored) {
             }
         });
     }
 
     public void updateAkinatorImage(String mode) {
         String imagePath = "/com/ensa/akinator/assets/akinator-" + mode + ".png";
-        Image newImage = new Image(getClass().getResourceAsStream(imagePath));
+        Image newImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath)));
         genieImage.setImage(newImage);
     }
 
     private void play(AnswerEnum answerEnum) {
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.1));
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.25));
 
         updateAkinatorImage("think");
         this.questionLabel.setText("...");
@@ -128,9 +134,20 @@ public class GameController {
             return;
         }
 
+        if (gameEngine.getPossibleCandidateIds().isEmpty()) {
+            handleCharacterNotFound();
+            return;
+        }
+
         currentStep++;
         updateStepLabel();
         this.currentQuestion = gameEngine.getBestQuestion();
+
+        if (this.currentQuestion == null) {
+            handleCharacterNotFound();
+            return;
+        }
+
         this.questionLabel.setText(this.currentQuestion.getText());
     }
 
@@ -147,5 +164,9 @@ public class GameController {
 
         Global.characterFounded = character;
         App.setRoot("character");
+    }
+
+    private void handleCharacterNotFound() throws IOException {
+        App.setRoot("notfound");
     }
 }

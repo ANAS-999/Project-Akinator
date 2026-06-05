@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ensa</groupId>
@@ -12,10 +12,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
-        <!-- Defines the JavaFX version we want to use -->
-        <javafx.version>17.0.6</javafx.version> 
-        <!-- Fixed your main class path here -->
-        <exec.mainClass>com.ensa.akinator.App</exec.mainClass> 
+        <javafx.version>17.0.6</javafx.version>
+        <exec.mainClass>com.ensa.akinator.App</exec.mainClass>
     </properties>
 
     <dependencies>
@@ -43,6 +41,19 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20251224</version>
+        </dependency>
+
+        <!-- 4. Media Player -->
+         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>21</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>21</version>
         </dependency>
     </dependencies>
 
