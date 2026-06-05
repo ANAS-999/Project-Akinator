@@ -41,7 +41,7 @@ public class Functions {
         Alert errorAlert = new Alert(AlertType.ERROR);
         errorAlert.setTitle(title);
         errorAlert.setHeaderText(null);
-        errorAlert.setContentText(message);
+        errorAlert.setContentText(title + " : " + message);
         errorAlert.showAndWait();
     }
 

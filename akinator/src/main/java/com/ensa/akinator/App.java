@@ -17,11 +17,10 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("primary"), 500, 750);
         stage.setScene(scene);
         stage.setTitle("Akinator - Guess the Character");
         stage.setResizable(false);
-        stage.sizeToScene();
         stage.show();
     }
 
