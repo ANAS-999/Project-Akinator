@@ -14,6 +14,13 @@ public class Question {
 		idQuestion = "nbQuestion";
 		
 	}
+
+	// Overloaded constructor for database retrieval
+	public Question(String idQuestion, String text, int parentQuestionId) {
+		this.idQuestion = idQuestion;
+		this.text = text;
+		this.parentQuestionId = parentQuestionId;
+	}
 	
 	// =============Getters and setters================
 	public String getIdQuestion() {

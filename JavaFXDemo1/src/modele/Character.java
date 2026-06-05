@@ -9,6 +9,7 @@ public class Character {
 	private String imagePath;
 	private Map<Integer, Integer> answers;
 	private static int nbCharacter = 0;
+	private int categoryId;
 	
 	// ============Constructeur==================
 	public Character(String name, String imagePath, Map<Integer, Integer> answers) {
@@ -17,6 +18,15 @@ public class Character {
 		this.answers = answers;
 		idCharacter = "nbCharacter";
 		nbCharacter++;
+	}
+
+	// Overloaded constructor for database retrieval
+	public Character(String idCharacter, String name, String imagePath, int categoryId, Map<Integer, Integer> answers) {
+		this.idCharacter = idCharacter;
+		this.name = name;
+		this.imagePath = imagePath;
+		this.categoryId = categoryId;
+		this.answers = answers;
 	}
 
 	
@@ -52,6 +62,14 @@ public class Character {
 
 	public void setAnswers(Map<Integer, Integer> answers) {
 		this.answers = answers;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 	// =====================Method matches=======================
