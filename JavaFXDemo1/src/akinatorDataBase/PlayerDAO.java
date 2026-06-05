@@ -1,0 +1,116 @@
+package akinatorDataBase;
+
+import modele.Player;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PlayerDAO {
+
+	// Informations de connexion (à adapter selon ta BDD)
+    private static String url = "jdbc:mysql://localhost:3306/player_db";
+    private static String user = "root";
+    private static String password = "";
+
+    // Méthode pour INSÉRER un joueur (Create)
+    public static void savePlayer(Player player) {
+        String query = "INSERT INTO players (id, username, password) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            
+            pstmt.setString(1, player.getIdPlayer());
+            pstmt.setString(2, player.getUserName());
+            pstmt.setString(3, player.getPassWord());
+            pstmt.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Méthode pour RÉCUPÉRER tous les joueurs (Read)
+    public static List<Player> getAllPlayers() {
+        List<Player> players = new ArrayList<>();
+        String query = "SELECT * FROM players";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                // On crée un objet Player à partir des données de la BDD
+                Player p = new Player(rs.getString("name"), rs.getString("username"), rs.getString("password"));
+                players.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return players;
+    }
+
+    public static boolean containUserName(String pseudoRecherche) {
+        if (PlayerDAO.getAllPlayers() == null) { return false; }
+
+        for (Player p : PlayerDAO.getAllPlayers()) {
+            if (p.getUserName().equals(pseudoRecherche)) {
+                return true; // Le joueur existe !
+            }
+        }
+        return false; // On a parcouru toute la liste sans le trouver
+    }
+
+    public static boolean isLoginValid(String username, String providedPassword) {
+        // On ne sélectionne QUE le mot de passe pour être plus rapide
+        String query = "SELECT password FROM players WHERE username = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            // On remplace le "?" par le nom d'utilisateur fourni
+            pstmt.setString(1, username);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                // Si rs.next() est vrai, le joueur existe dans la base
+                if (rs.next()) {
+                    String storedPassword = rs.getString("password");
+
+                    // On compare le mot de passe de la BDD avec celui tapé par l'utilisateur
+                    return storedPassword.equals(providedPassword);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la vérification du login : " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        // Retourne false si le joueur n'existe pas, si le mot de passe est faux, ou s'il y a une erreur BDD
+        return false;
+    }
+
+    // Méthode pour INSCRIRE un nouveau joueur
+    public static boolean registerPlayer(String nom, String username, String userPassword) {
+        if (containUserName(username)) {
+            return false;
+        }
+
+        String query = "INSERT INTO players (name, username, password) VALUES (?, ?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password);
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, nom);
+            pstmt.setString(2, username);
+            pstmt.setString(3, userPassword);
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("❌ Erreur lors de l'enregistrement en BDD : " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+}
