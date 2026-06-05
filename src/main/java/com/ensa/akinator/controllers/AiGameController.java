@@ -8,6 +8,8 @@ import com.ensa.akinator.Models.AnswerEnum;
 import com.ensa.akinator.Models.Character;
 import com.ensa.akinator.Utils.Functions;
 import com.ensa.akinator.Utils.Global;
+import com.ensa.akinator.Managers.PlayerDAO;
+
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -31,15 +33,43 @@ public class AiGameController {
     private Label stepLabel;
 
     @FXML
+    private Label scoreLabel;
+
+    @FXML
     public void initialize() {
+        if (Global.loggedInPlayer != null) {
+            Global.loggedInPlayer.setScore(0);
+            PlayerDAO.updatePlayerScoreAndHighest(
+                Global.loggedInPlayer.getUserName(), 
+                0, 
+                Global.loggedInPlayer.getHighestScore()
+            );
+        }
         this.aiGameEngine = new AIGameEngine();
         updateStepLabel();
+        updateScoreLabel();
         loadNextQuestionTask(null, -1);
     }
 
     private void updateStepLabel() {
         if (stepLabel != null) {
             stepLabel.setText(String.valueOf(currentStep));
+        }
+    }
+
+    private void updateScoreLabel() {
+        if (scoreLabel != null) {
+            if (Global.loggedInPlayer != null) {
+                scoreLabel.setText("👤 " + Global.loggedInPlayer.getUserName() + 
+                                   "  |  🎮 Games: " + Global.loggedInPlayer.getGamesNb() + 
+                                   "  |  ⭐ Best: " + Global.loggedInPlayer.getHighestScore() + 
+                                   "  |  ⚡ Score: " + Global.loggedInPlayer.getScore());
+                scoreLabel.setVisible(true);
+                scoreLabel.setManaged(true);
+            } else {
+                scoreLabel.setVisible(false);
+                scoreLabel.setManaged(false);
+            }
         }
     }
 
@@ -70,6 +100,20 @@ public class AiGameController {
 
     @FXML
     private void handleHomeAction() throws IOException {
+        if (Global.loggedInPlayer != null) {
+            if (Global.loggedInPlayer.getScore() > Global.loggedInPlayer.getHighestScore()) {
+                Global.loggedInPlayer.setHighestScore(Global.loggedInPlayer.getScore());
+            }
+            Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
+            Global.loggedInPlayer.setScore(0); // Réinitialiser le score pour la prochaine partie
+            
+            PlayerDAO.updatePlayerStats(
+                Global.loggedInPlayer.getUserName(),
+                Global.loggedInPlayer.getScore(),
+                Global.loggedInPlayer.getHighestScore(),
+                Global.loggedInPlayer.getGamesNb()
+            );
+        }
         App.setRoot("primary");
     }
 
@@ -80,6 +124,17 @@ public class AiGameController {
     }
 
     private void play(AnswerEnum answerEnum) {
+        // Augmenter le score de 98 après chaque réponse
+        if (Global.loggedInPlayer != null) {
+            Global.loggedInPlayer.incrementScore(98);
+            PlayerDAO.updatePlayerScoreAndHighest(
+                Global.loggedInPlayer.getUserName(), 
+                Global.loggedInPlayer.getScore(),
+                Global.loggedInPlayer.getHighestScore()
+            );
+            updateScoreLabel();
+        }
+
         PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
 
         updateAkinatorImage("think");
@@ -135,6 +190,23 @@ public class AiGameController {
             String image = "/com/ensa/akinator/assets/character.png";
 
             Global.characterFounded = new Character(-1, guessedName, -1, image);
+
+            // Fin de partie réussie : sauvegarde et incrémentation des statistiques
+            if (Global.loggedInPlayer != null) {
+                Global.lastMatchScore = Global.loggedInPlayer.getScore();
+                if (Global.loggedInPlayer.getScore() > Global.loggedInPlayer.getHighestScore()) {
+                    Global.loggedInPlayer.setHighestScore(Global.loggedInPlayer.getScore());
+                }
+                Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
+                Global.loggedInPlayer.setScore(0); // Réinitialiser le score pour la prochaine partie
+                
+                PlayerDAO.updatePlayerStats(
+                    Global.loggedInPlayer.getUserName(),
+                    Global.loggedInPlayer.getScore(),
+                    Global.loggedInPlayer.getHighestScore(),
+                    Global.loggedInPlayer.getGamesNb()
+                );
+            }
 
             Platform.runLater(() -> {
                 try {

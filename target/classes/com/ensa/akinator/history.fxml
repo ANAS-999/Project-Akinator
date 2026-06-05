@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/history.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.HistoryController">
+    <children>
+        <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="history-root">
+            <padding>
+                <Insets top="40.0" bottom="30.0" left="25.0" right="25.0" />
+            </padding>
+            <children>
+                <Label styleClass="history-header" text="LEADERBOARD" />
+                <Label styleClass="history-subtitle" text="Top Players Scores" />
+
+                <!-- Scrollable container for players list -->
+                <ScrollPane fitToWidth="true" styleClass="leaderboard-scroll" maxWidth="420" prefHeight="420">
+                    <content>
+                        <VBox fx:id="leaderboardContainer" spacing="10" styleClass="leaderboard-list">
+                            <!-- Dynamic items injected here -->
+                        </VBox>
+                    </content>
+                </ScrollPane>
+
+                <!-- Navigation buttons -->
+                <VBox alignment="CENTER" spacing="12.0" styleClass="result-buttons">
+                    <children>
+                        <Button onAction="#onBackClicked" styleClass="char-primary-btn" text="BACK TO HOME" />
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </VBox>
+            </children>
+        </VBox>
+        <Label fx:id="scoreLabel" styleClass="score-header-label" text=""
+               AnchorPane.topAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+    </children>
+</AnchorPane>

@@ -6,13 +6,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/character.css" xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.CharacterController">
+             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.CharacterController">
     <children>
         <VBox alignment="CENTER" spacing="22.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
               AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="character-root">
@@ -35,6 +33,8 @@
                 <Label fx:id="characterLabel" styleClass="character-name" text="CHARACTER NAME" textAlignment="CENTER"
                        wrapText="true"/>
 
+                <Label fx:id="matchScoreLabel" styleClass="match-score-label" text="Score: 0" textAlignment="CENTER"/>
+
                 <VBox alignment="CENTER" spacing="12.0" styleClass="result-buttons">
                     <children>
                         <Button onAction="#onPlayAgainClicked" styleClass="char-primary-btn" text="PLAY AGAIN"/>
@@ -49,5 +49,7 @@
                 <Insets top="30.0" bottom="30.0" left="25.0" right="25.0"/>
             </padding>
         </VBox>
+        <Label fx:id="scoreLabel" styleClass="score-header-label" text="Score: 0"
+               AnchorPane.topAnchor="15.0" AnchorPane.rightAnchor="15.0" />
     </children>
 </AnchorPane>

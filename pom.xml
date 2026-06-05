@@ -37,6 +37,12 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.53.0.0</version>
         </dependency>
+        <!-- MySQL Database Driver -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.3.0</version>
+        </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>

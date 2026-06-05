@@ -58,5 +58,7 @@
         </VBox>
         <Button onAction="#handleHomeAction" styleClass="home-btn-icon" text="🏠"
                 AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+        <Label fx:id="scoreLabel" styleClass="score-header-label" text="Score: 0"
+               AnchorPane.topAnchor="15.0" AnchorPane.rightAnchor="15.0" />
     </children>
 </AnchorPane>

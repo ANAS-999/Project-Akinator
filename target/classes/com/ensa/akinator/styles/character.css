@@ -91,3 +91,25 @@
 .char-secondary-btn:pressed {
     -fx-background-color: rgba(255, 255, 255, 0.2);
 }
+
+.score-header-label {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(26, 26, 46, 0.75);
+    -fx-background-radius: 20px;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-padding: 4px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+
+.match-score-label {
+    -fx-font-size: 20px;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-text-fill: #39ff14; /* neon green */
+    -fx-effect: dropshadow(gaussian, rgba(57, 255, 20, 0.45), 8, 0, 0, 0);
+    -fx-text-alignment: center;
+}

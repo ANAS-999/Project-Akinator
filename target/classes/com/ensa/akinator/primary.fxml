@@ -32,10 +32,22 @@
                             <Insets bottom="16.0"/>
                         </VBox.margin>
                     </Label>
+
                     <Button fx:id="playButton" mnemonicParsing="false" onAction="#handlePlayAction"
                             styleClass="primary-btn" text="▶  Play vs Akinator"/>
                     <Button fx:id="playButton1" mnemonicParsing="false" onAction="#handlePlayAIAction"
                             styleClass="ai-btn" text="🤖  Play vs AI"/>
+
+                    <!-- Bouton pour voir l'historique / leaderboard -->
+                    <Button fx:id="historyButton" mnemonicParsing="false" onAction="#handleHistoryAction"
+                            styleClass="ai-btn" text="🏆  Leaderboard"/>
+
+                    <!-- Label d'avertissement de connexion -->
+                    <Label fx:id="loginWarningLabel" styleClass="warning-label" text="" visible="false" managed="false" />
+
+                    <!-- Bouton Connexion / Déconnexion -->
+                    <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginAction"
+                            styleClass="login-btn" text="🔑  Login"/>
                 </VBox>
 
                 <Label prefHeight="27.0" styleClass="footer"
@@ -48,5 +60,10 @@
                 <Insets top="20.0" right="20.0"/>
             </StackPane.margin>
         </Button>
+        <Label fx:id="scoreLabel" styleClass="score-header-label" text="" StackPane.alignment="TOP_LEFT" visible="false" managed="false">
+            <StackPane.margin>
+                <Insets top="20.0" left="20.0"/>
+            </StackPane.margin>
+        </Label>
     </children>
 </StackPane>

@@ -25,12 +25,39 @@ public class CharacterController {
     private ImageView characterImage;
 
     @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label matchScoreLabel;
+
+    @FXML
     private void initialize() {
         setCharacterName();
         setCharacterImage();
         applyAnimations();
+        updateScoreLabel();
+        updateMatchScoreLabel();
+    }
 
-        // Global.player.addScore();
+    private void updateMatchScoreLabel() {
+        if (matchScoreLabel != null) {
+            matchScoreLabel.setText("Score: " + Global.lastMatchScore);
+        }
+    }
+
+    private void updateScoreLabel() {
+        if (scoreLabel != null) {
+            if (Global.loggedInPlayer != null) {
+                scoreLabel.setText("👤 " + Global.loggedInPlayer.getUserName() + 
+                                   "  |  🎮 Games: " + Global.loggedInPlayer.getGamesNb() + 
+                                   "  |  ⭐ Best: " + Global.loggedInPlayer.getHighestScore());
+                scoreLabel.setVisible(true);
+                scoreLabel.setManaged(true);
+            } else {
+                scoreLabel.setVisible(false);
+                scoreLabel.setManaged(false);
+            }
+        }
     }
 
     private void applyAnimations() {

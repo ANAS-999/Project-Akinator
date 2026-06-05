@@ -1,0 +1,91 @@
+package com.ensa.akinator.Models;
+
+public class Player {
+    private String name;
+    private String idPlayer;
+    private String userName;
+    private String passWord;
+    private int score;
+    private int highestScore;
+    private int gamesNb;
+    private static int nbPlayer = 1;
+    
+    // ==============Constructeur================
+    public Player(String name, String userName, String passWord) {
+        this.name = name;
+        this.userName = userName;
+        this.passWord = passWord;
+        this.idPlayer = userName + nbPlayer;
+        nbPlayer++;
+        this.score = 0;
+        this.highestScore = 0;
+    }
+
+    // ==============Getters and setters=============
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getIdPlayer() {
+        return idPlayer;
+    }
+
+    public void setIdPlayer(String idPlayer) {
+        this.idPlayer = idPlayer;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+        if (this.score > this.highestScore) {
+            this.highestScore = this.score;
+        }
+    }
+
+    public int getHighestScore() {
+        return highestScore;
+    }
+
+    public void setHighestScore(int highestScore) {
+        this.highestScore = highestScore;
+    }
+
+    public String getPassWord() {
+        return passWord;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public int getGamesNb() {
+        return gamesNb;
+    }
+
+    public void setGamesNb(int gamesNb) {
+        this.gamesNb = gamesNb;
+    }
+
+    // ===============Score increment==================
+    public void incrementScore(int increment) {
+        score += increment;
+        if (score > highestScore) {
+            highestScore = score;
+        }
+    }
+}

@@ -141,3 +141,54 @@
     -fx-translate-y: 3px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 3, 0, 0, 1);
 }
+
+.warning-label {
+    -fx-text-fill: #ff4a4a;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 5px 0;
+}
+
+.player-status-label {
+    -fx-text-fill: #2ecc71;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 5px 0;
+}
+
+.login-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 50px;
+    -fx-border-color: #fcd12a;
+    -fx-border-width: 2px;
+    -fx-border-radius: 50px;
+    -fx-text-fill: #fcd12a;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-padding: 8px 20px;
+    -fx-min-width: 180px;
+    -fx-cursor: hand;
+}
+
+.login-btn:hover {
+    -fx-background-color: rgba(252, 209, 42, 0.1);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.score-header-label {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(26, 26, 46, 0.75);
+    -fx-background-radius: 20px;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-padding: 4px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
