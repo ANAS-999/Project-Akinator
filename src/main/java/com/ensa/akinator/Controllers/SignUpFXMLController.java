@@ -1,4 +1,4 @@
-package com.ensa.akinator.controllers;
+package com.ensa.akinator.Controllers;
 
 import com.ensa.akinator.App;
 import com.ensa.akinator.Managers.PlayerDAO;
@@ -68,6 +68,16 @@ public class SignUpFXMLController {
             App.setRoot("LoginFXML");
         } catch (IOException e) {
             System.err.println("Error loading login screen: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToHome(ActionEvent event) {
+        try {
+            App.setRoot("primary");
+        } catch (IOException e) {
+            System.err.println("Error loading primary screen: " + e.getMessage());
             e.printStackTrace();
         }
     }

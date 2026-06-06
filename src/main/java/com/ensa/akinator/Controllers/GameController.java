@@ -1,4 +1,4 @@
-package com.ensa.akinator.controllers;
+package com.ensa.akinator.Controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -44,11 +44,7 @@ public class GameController {
         try {
             if (Global.loggedInPlayer != null) {
                 Global.loggedInPlayer.setScore(0);
-                PlayerDAO.updatePlayerScoreAndHighest(
-                    Global.loggedInPlayer.getUserName(), 
-                    0, 
-                    Global.loggedInPlayer.getHighestScore()
-                );
+                PlayerDAO.updatePlayerScoreAndHighest(Global.loggedInPlayer);
             }
             this.gameEngine = new GameEngine("Anas");
             this.currentQuestion = gameEngine.getBestQuestion();
@@ -71,10 +67,7 @@ public class GameController {
     private void updateScoreLabel() {
         if (scoreLabel != null) {
             if (Global.loggedInPlayer != null) {
-                scoreLabel.setText("👤 " + Global.loggedInPlayer.getUserName() + 
-                                   "  |  🎮 Games: " + Global.loggedInPlayer.getGamesNb() + 
-                                   "  |  ⭐ Best: " + Global.loggedInPlayer.getHighestScore() + 
-                                   "  |  ⚡ Score: " + Global.loggedInPlayer.getScore());
+                scoreLabel.setText("⚡ Score: " + Global.loggedInPlayer.getScore());
                 scoreLabel.setVisible(true);
                 scoreLabel.setManaged(true);
             } else {
@@ -172,11 +165,7 @@ public class GameController {
         // Augmenter le score de 98 après chaque réponse
         if (Global.loggedInPlayer != null) {
             Global.loggedInPlayer.incrementScore(98);
-            PlayerDAO.updatePlayerScoreAndHighest(
-                Global.loggedInPlayer.getUserName(), 
-                Global.loggedInPlayer.getScore(),
-                Global.loggedInPlayer.getHighestScore()
-            );
+            PlayerDAO.updatePlayerScoreAndHighest(Global.loggedInPlayer);
             updateScoreLabel();
         }
 
@@ -232,25 +221,7 @@ public class GameController {
 
     private void handleCharacterNotFound() throws IOException {
         // Fin de partie perdue : sauvegarde et incrémentation des statistiques
-        if (Global.loggedInPlayer != null) {
-            // Toujours afficher et enregistrer le score à 1489 si le caractère n'est pas trouvé
-            Global.loggedInPlayer.setScore(1489);
-            
-            Global.lastMatchScore = 1489;
-            
-            if (Global.loggedInPlayer.getScore() > Global.loggedInPlayer.getHighestScore()) {
-                Global.loggedInPlayer.setHighestScore(Global.loggedInPlayer.getScore());
-            }
-            Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
-            Global.loggedInPlayer.setScore(0); // Réinitialiser le score
-            
-            PlayerDAO.updatePlayerStats(
-                Global.loggedInPlayer.getUserName(),
-                Global.loggedInPlayer.getScore(),
-                Global.loggedInPlayer.getHighestScore(),
-                Global.loggedInPlayer.getGamesNb()
-            );
-        }
+        PlayerDAO.handleCharacterNotFound();
 
         App.setRoot("notfound");
     }

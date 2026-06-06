@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/primary.css" xmlns="http://javafx.com/javafx/26"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.PrimaryController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.Controllers.PrimaryController">
 
     <children>
         <VBox alignment="CENTER" spacing="30.0" styleClass="main-container">
@@ -44,25 +44,30 @@
 
                     <!-- Label d'avertissement de connexion -->
                     <Label fx:id="loginWarningLabel" styleClass="warning-label" text="" visible="false" managed="false" />
-
-                    <!-- Bouton Connexion / Déconnexion -->
-                    <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginAction"
-                            styleClass="login-btn" text="🔑  Login"/>
                 </VBox>
-
-                <Label prefHeight="27.0" styleClass="footer"
-                       text="BY ANAS &amp; YOUNES" textFill="#a0a0a0"/>
             </children>
         </VBox>
         <Button fx:id="musicButton" mnemonicParsing="false" onAction="#handleMusicToggle"
                 styleClass="music-btn-icon" text="🔊" StackPane.alignment="TOP_RIGHT">
             <StackPane.margin>
+                <Insets top="20.0" right="74.0"/>
+            </StackPane.margin>
+        </Button>
+        <Button fx:id="infoButton" mnemonicParsing="false" onAction="#handleInfoAction"
+                styleClass="info-btn-icon" text="ℹ" StackPane.alignment="TOP_RIGHT">
+            <StackPane.margin>
                 <Insets top="20.0" right="20.0"/>
+            </StackPane.margin>
+        </Button>
+        <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLoginAction"
+                styleClass="login-btn-icon" text="👤" StackPane.alignment="TOP_LEFT">
+            <StackPane.margin>
+                <Insets top="20.0" left="20.0"/>
             </StackPane.margin>
         </Button>
         <Label fx:id="scoreLabel" styleClass="score-header-label" text="" StackPane.alignment="TOP_LEFT" visible="false" managed="false">
             <StackPane.margin>
-                <Insets top="20.0" left="20.0"/>
+                <Insets top="20.0" left="74.0"/>
             </StackPane.margin>
         </Label>
     </children>

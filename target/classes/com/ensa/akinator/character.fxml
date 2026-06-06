@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/character.css" xmlns="http://javafx.com/javafx/26"
-             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.CharacterController">
+             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.Controllers.CharacterController">
     <children>
         <VBox alignment="CENTER" spacing="22.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
               AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="character-root">
@@ -49,7 +49,5 @@
                 <Insets top="30.0" bottom="30.0" left="25.0" right="25.0"/>
             </padding>
         </VBox>
-        <Label fx:id="scoreLabel" styleClass="score-header-label" text="Score: 0"
-               AnchorPane.topAnchor="15.0" AnchorPane.rightAnchor="15.0" />
     </children>
 </AnchorPane>

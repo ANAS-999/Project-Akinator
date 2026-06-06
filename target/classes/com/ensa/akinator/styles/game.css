@@ -135,13 +135,16 @@
 .score-header-label {
     -fx-text-fill: #fcd12a;
     -fx-font-family: "Impact", sans-serif;
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-background-color: rgba(26, 26, 46, 0.75);
-    -fx-background-radius: 20px;
+    -fx-min-height: 38px;
+    -fx-max-height: 38px;
+    -fx-background-radius: 8px;
     -fx-border-color: #d4af37;
-    -fx-border-width: 1px;
-    -fx-border-radius: 20px;
-    -fx-padding: 4px 10px;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 8px;
+    -fx-alignment: center;
+    -fx-padding: 0 15px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
 }

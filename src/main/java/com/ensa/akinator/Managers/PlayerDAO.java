@@ -1,6 +1,7 @@
 package com.ensa.akinator.Managers;
 
 import com.ensa.akinator.Models.Player;
+import com.ensa.akinator.Utils.Global;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -8,33 +9,57 @@ import java.util.List;
 
 public class PlayerDAO {
 
-    // Informations de connexion (à adapter selon ta BDD)
-    private static String url = "jdbc:mysql://localhost:3306/player_db";
-    private static String user = "root";
-    private static String password = "";
+    // Informations de connexion (SQLite local)
+    private static String url = "jdbc:sqlite:users.db";
 
-    // S'assurer que les colonnes score, highest_score et games_nb existent sur MySQL
+    // Initialiser la base de données SQLite et s'assurer que la table existe
     static {
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            try {
-                stmt.executeUpdate("ALTER TABLE players ADD COLUMN score INT DEFAULT 0");
-            } catch (SQLException ignored) {}
-            try {
-                stmt.executeUpdate("ALTER TABLE players ADD COLUMN highest_score INT DEFAULT 0");
-            } catch (SQLException ignored) {}
-            try {
-                stmt.executeUpdate("ALTER TABLE players ADD COLUMN games_nb INT DEFAULT 0");
-            } catch (SQLException ignored) {}
+            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS players (" +
+                               "id TEXT, " +
+                               "name TEXT, " +
+                               "username TEXT PRIMARY KEY, " +
+                               "password TEXT, " +
+                               "score INTEGER DEFAULT 0, " +
+                               "highest_score INTEGER DEFAULT 0, " +
+                               "games_nb INTEGER DEFAULT 0" +
+                               ")");
         } catch (SQLException e) {
-            // Ignorer
+            System.err.println("❌ Erreur lors de l'initialisation de la table players : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public static void handleCharacterNotFound() {
+        if (Global.loggedInPlayer != null) {
+            Global.loggedInPlayer.incrementScore(1489);
+            Global.lastMatchScore =  Global.loggedInPlayer.getScore();
+
+            if (Global.loggedInPlayer.getScore() > Global.loggedInPlayer.getHighestScore()) {
+                Global.loggedInPlayer.setHighestScore(Global.loggedInPlayer.getScore());
+            }
+
+            Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
+            Global.loggedInPlayer.setScore(0); // Réinitialiser le score
+
+            PlayerDAO.updatePlayerStats(
+                    Global.loggedInPlayer.getUserName(),
+                    Global.loggedInPlayer.getScore(),
+                    Global.loggedInPlayer.getHighestScore(),
+                    Global.loggedInPlayer.getGamesNb()
+            );
         }
     }
 
     // Mettre à jour le score et le score maximum du joueur
-    public static void updatePlayerScoreAndHighest(String username, int newScore, int newHighest) {
+    public static void updatePlayerScoreAndHighest(Player player) {
+        String username= player.getUserName();
+        int newScore = player.getScore();
+        int newHighest = player.getHighestScore();
+
         String query = "UPDATE players SET score = ?, highest_score = ? WHERE username = ?";
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, newScore);
             pstmt.setInt(2, newHighest);
@@ -49,7 +74,7 @@ public class PlayerDAO {
     // Mettre à jour toutes les statistiques du joueur à la fin d'un match
     public static void updatePlayerStats(String username, int score, int highestScore, int gamesNb) {
         String query = "UPDATE players SET score = ?, highest_score = ?, games_nb = ? WHERE username = ?";
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, score);
             pstmt.setInt(2, highestScore);
@@ -66,7 +91,7 @@ public class PlayerDAO {
     public static void savePlayer(Player player) {
         String query = "INSERT INTO players (id, username, password, score, highest_score, games_nb) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             
             pstmt.setString(1, player.getIdPlayer());
@@ -87,7 +112,7 @@ public class PlayerDAO {
         List<Player> players = new ArrayList<>();
         String query = "SELECT * FROM players";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
 
@@ -131,7 +156,7 @@ public class PlayerDAO {
     public static boolean isLoginValid(String username, String providedPassword) {
         String query = "SELECT password FROM players WHERE username = ?";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, username);
@@ -158,7 +183,7 @@ public class PlayerDAO {
 
         String query = "INSERT INTO players (name, username, password, score, highest_score, games_nb) VALUES (?, ?, ?, 0, 0, 0)";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password);
+        try (Connection conn = DriverManager.getConnection(url);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, nom);

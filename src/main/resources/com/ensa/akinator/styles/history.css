@@ -136,3 +136,10 @@
     -fx-padding: 4px 10px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
 }
+
+.logged-in-user-row {
+    -fx-border-color: #fcd12a;
+    -fx-border-width: 2px;
+    -fx-background-color: rgba(26, 26, 46, 0.95);
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.45), 10, 0, 0, 0);
+}

@@ -8,6 +8,6 @@ module com.ensa.akinator {
     opens com.ensa.akinator to javafx.fxml;
     exports com.ensa.akinator;
 
-    opens com.ensa.akinator.controllers to javafx.fxml;
-    exports com.ensa.akinator.controllers;
+    opens com.ensa.akinator.Controllers to javafx.fxml;
+    exports com.ensa.akinator.Controllers;
 }

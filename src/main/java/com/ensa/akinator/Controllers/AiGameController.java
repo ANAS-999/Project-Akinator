@@ -1,4 +1,4 @@
-package com.ensa.akinator.controllers;
+package com.ensa.akinator.Controllers;
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ import javafx.util.Duration;
 
 public class AiGameController {
     private AIGameEngine aiGameEngine;
-    private int currentStep = 1;
+    private int currentStep = 0;
 
     @FXML
     private Label questionLabel;
@@ -39,12 +39,9 @@ public class AiGameController {
     public void initialize() {
         if (Global.loggedInPlayer != null) {
             Global.loggedInPlayer.setScore(0);
-            PlayerDAO.updatePlayerScoreAndHighest(
-                Global.loggedInPlayer.getUserName(), 
-                0, 
-                Global.loggedInPlayer.getHighestScore()
-            );
+            PlayerDAO.updatePlayerScoreAndHighest(Global.loggedInPlayer);
         }
+
         this.aiGameEngine = new AIGameEngine();
         updateStepLabel();
         updateScoreLabel();
@@ -60,10 +57,7 @@ public class AiGameController {
     private void updateScoreLabel() {
         if (scoreLabel != null) {
             if (Global.loggedInPlayer != null) {
-                scoreLabel.setText("👤 " + Global.loggedInPlayer.getUserName() + 
-                                   "  |  🎮 Games: " + Global.loggedInPlayer.getGamesNb() + 
-                                   "  |  ⭐ Best: " + Global.loggedInPlayer.getHighestScore() + 
-                                   "  |  ⚡ Score: " + Global.loggedInPlayer.getScore());
+                scoreLabel.setText("⚡ Score: " + Global.loggedInPlayer.getScore());
                 scoreLabel.setVisible(true);
                 scoreLabel.setManaged(true);
             } else {
@@ -106,12 +100,12 @@ public class AiGameController {
             }
             Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
             Global.loggedInPlayer.setScore(0); // Réinitialiser le score pour la prochaine partie
-            
+
             PlayerDAO.updatePlayerStats(
-                Global.loggedInPlayer.getUserName(),
-                Global.loggedInPlayer.getScore(),
-                Global.loggedInPlayer.getHighestScore(),
-                Global.loggedInPlayer.getGamesNb()
+                    Global.loggedInPlayer.getUserName(),
+                    Global.loggedInPlayer.getScore(),
+                    Global.loggedInPlayer.getHighestScore(),
+                    Global.loggedInPlayer.getGamesNb()
             );
         }
         App.setRoot("primary");
@@ -123,31 +117,28 @@ public class AiGameController {
         genieImage.setImage(newImage);
     }
 
-    private void play(AnswerEnum answerEnum) {
+    private void play(AnswerEnum answerEnum) throws IOException {
         // Augmenter le score de 98 après chaque réponse
         if (Global.loggedInPlayer != null) {
             Global.loggedInPlayer.incrementScore(98);
-            PlayerDAO.updatePlayerScoreAndHighest(
-                Global.loggedInPlayer.getUserName(), 
-                Global.loggedInPlayer.getScore(),
-                Global.loggedInPlayer.getHighestScore()
-            );
+            PlayerDAO.updatePlayerScoreAndHighest(Global.loggedInPlayer);
             updateScoreLabel();
         }
 
-        PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+        if (currentStep >= 30) {
+            handleCharacterNotFound();
+            return;
+        }
 
         updateAkinatorImage("think");
         this.questionLabel.setText("...");
 
-        pause.setOnFinished(event -> {
-            loadNextQuestionTask(aiGameEngine, answerEnum.getValue());
-        });
-
-        pause.play();
+        loadNextQuestionTask(aiGameEngine, answerEnum.getValue());
     }
 
     private void loadNextQuestionTask(AIGameEngine engine, int answerValue) {
+        PauseTransition pause = new PauseTransition(Duration.seconds(1.5));
+
         Task<String> task = new Task<>() {
             @Override
             protected String call() throws Exception {
@@ -160,18 +151,26 @@ public class AiGameController {
         };
 
         task.setOnSucceeded(event -> {
-            String response = task.getValue();
-            updateAkinatorImage("ask");
-            handleResponse(response);
+            pause.setOnFinished(pauseEvent -> {
+                String response = task.getValue();
+                updateAkinatorImage("ask");
+                handleResponse(response);
+            });
+
+            pause.play();
         });
 
         task.setOnFailed(event -> {
-            updateAkinatorImage("ask");
-            Throwable exception = task.getException();
-            Platform.runLater(() -> {
-                Functions.showErrorAlert("AI ERROR", "Failed to connect to AI server: " + exception.getMessage());
-                returnToPrimary();
+            pause.setOnFinished(pauseEvent -> {
+                updateAkinatorImage("ask");
+                Throwable exception = task.getException();
+                Platform.runLater(() -> {
+                    Functions.showErrorAlert("AI ERROR", "Failed to connect to AI server: " + exception.getMessage());
+                    returnToPrimary();
+                });
             });
+
+            pause.play();
         });
 
         Thread thread = new Thread(task);
@@ -199,12 +198,12 @@ public class AiGameController {
                 }
                 Global.loggedInPlayer.setGamesNb(Global.loggedInPlayer.getGamesNb() + 1);
                 Global.loggedInPlayer.setScore(0); // Réinitialiser le score pour la prochaine partie
-                
+
                 PlayerDAO.updatePlayerStats(
-                    Global.loggedInPlayer.getUserName(),
-                    Global.loggedInPlayer.getScore(),
-                    Global.loggedInPlayer.getHighestScore(),
-                    Global.loggedInPlayer.getGamesNb()
+                        Global.loggedInPlayer.getUserName(),
+                        Global.loggedInPlayer.getScore(),
+                        Global.loggedInPlayer.getHighestScore(),
+                        Global.loggedInPlayer.getGamesNb()
                 );
             }
 
@@ -251,4 +250,12 @@ public class AiGameController {
             }
         });
     }
+
+    private void handleCharacterNotFound() throws IOException {
+        // Fin de partie perdue : sauvegarde et incrémentation des statistiques
+        PlayerDAO.handleCharacterNotFound();
+
+        App.setRoot("notfound");
+    }
+
 }

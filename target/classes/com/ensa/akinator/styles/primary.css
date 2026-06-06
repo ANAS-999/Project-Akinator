@@ -158,25 +158,45 @@
     -fx-padding: 5px 0;
 }
 
-.login-btn {
-    -fx-background-color: transparent;
-    -fx-background-radius: 50px;
-    -fx-border-color: #fcd12a;
-    -fx-border-width: 2px;
-    -fx-border-radius: 50px;
-    -fx-text-fill: #fcd12a;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Impact", sans-serif;
-    -fx-padding: 8px 20px;
-    -fx-min-width: 180px;
+.login-btn-icon {
+    /* Premium 3D Golden theme */
+    -fx-background-color: 
+        #9a7d23, /* 3D bottom shadow */
+        #ffe891, /* Inner light border bevel */
+        linear-gradient(to bottom, #fcd12a, #d4af37); /* Front face */
+    -fx-background-insets: 
+        0,         
+        0 0 4 0,   
+        1 1 5 1;   
+    -fx-background-radius: 8;
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 18px;
+    -fx-min-width: 44px;
+    -fx-max-width: 44px;
+    -fx-min-height: 44px;
+    -fx-max-height: 44px;
+    -fx-alignment: center;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.35), 8, 0, 0, 3);
 }
 
-.login-btn:hover {
-    -fx-background-color: rgba(252, 209, 42, 0.1);
+.login-btn-icon:hover {
+    -fx-background-color: 
+        #b08d26, 
+        #fff0b3, 
+        linear-gradient(to bottom, #ffdf00, #fcd12a);
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.55), 12, 0, 0, 4);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
+}
+
+.login-btn-icon:pressed {
+    -fx-background-insets: 
+        0, 
+        0 0 1 0, 
+        1 1 2 1;
+    -fx-translate-y: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 3, 0, 0, 1);
 }
 
 .score-header-label {
@@ -185,10 +205,185 @@
     -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-background-color: rgba(26, 26, 46, 0.75);
+    -fx-background-radius: 8px;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 8px;
+    -fx-padding: 0 15px;
+    -fx-min-height: 44px;
+    -fx-max-height: 44px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+}
+
+.info-btn-icon {
+    /* Premium 3D Golden theme */
+    -fx-background-color: 
+        #9a7d23, /* 3D bottom shadow */
+        #ffe891, /* Inner light border bevel */
+        linear-gradient(to bottom, #fcd12a, #d4af37); /* Front face */
+    -fx-background-insets: 
+        0,         
+        0 0 4 0,   
+        1 1 5 1;   
+    -fx-background-radius: 8;
+    -fx-text-fill: #1a1a2e;
+    -fx-font-size: 18px;
+    -fx-min-width: 44px;
+    -fx-max-width: 44px;
+    -fx-min-height: 44px;
+    -fx-max-height: 44px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.35), 8, 0, 0, 3);
+}
+
+.info-btn-icon:hover {
+    -fx-background-color: 
+        #b08d26, 
+        #fff0b3, 
+        linear-gradient(to bottom, #ffdf00, #fcd12a);
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.55), 12, 0, 0, 4);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.info-btn-icon:pressed {
+    -fx-background-insets: 
+        0, 
+        0 0 1 0, 
+        1 1 2 1;
+    -fx-translate-y: 3px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 3, 0, 0, 1);
+}
+
+/* About Dialog Styles */
+.about-dialog-root {
+    -fx-background-color: linear-gradient(to bottom, #1a1a2e, #162447, #1f4068);
     -fx-background-radius: 20px;
     -fx-border-color: #d4af37;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-border-radius: 20px;
-    -fx-padding: 4px 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 25, 0.4, 0, 8);
+}
+
+.dialog-close-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #e0e0e0;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: -10px -5px 0 0;
+}
+
+.dialog-close-btn:hover {
+    -fx-text-fill: #ff4a4a;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.about-dialog-title {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);
+    -fx-padding: 0 0 5px 0;
+}
+
+.dialog-card {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-fill-width: true;
+}
+
+.about-dialog-subtitle {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 15px;
+    -fx-letter-spacing: 1px;
+}
+
+.about-dialog-text {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: "Georgia Italic", serif;
+    -fx-font-size: 13px;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 4px;
+}
+
+.dialog-card-creators {
+    -fx-background-color: rgba(252, 209, 42, 0.08);
+    -fx-background-radius: 12px;
+    -fx-border-color: #d4af37;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-fill-width: true;
+    -fx-effect: dropshadow(gaussian, rgba(252, 209, 42, 0.1), 10, 0, 0, 0);
+}
+
+.about-dialog-subtitle-creators {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 15px;
+    -fx-letter-spacing: 1px;
+}
+
+.about-dialog-creators {
+    -fx-text-fill: white;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 18px;
+    -fx-letter-spacing: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 5, 0, 0, 0);
+}
+
+.dialog-card-tech {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-fill-width: true;
+}
+
+.about-dialog-subtitle-tech {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 15px;
+    -fx-letter-spacing: 1px;
+}
+
+.about-dialog-text-tech {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 4px;
+}
+
+.dialog-card-rules {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-background-radius: 12px;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-fill-width: true;
+}
+
+.about-dialog-subtitle-rules {
+    -fx-text-fill: #fcd12a;
+    -fx-font-family: "Impact", sans-serif;
+    -fx-font-size: 15px;
+    -fx-letter-spacing: 1px;
+}
+
+.about-dialog-text-rules {
+    -fx-text-fill: #e0e0e0;
+    -fx-font-family: "Georgia", serif;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 4px;
 }

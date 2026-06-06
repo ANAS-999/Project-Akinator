@@ -15,8 +15,8 @@ public class AIManager {
     private static String appTitle = "My Java Akinator";
     private static String apiKey = "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";
     private static String apiUrl = "https://api.groq.com/openai/v1/responses";
-    private static String modelName = "llama-3.1-8b-instant";
-    private static String model2Name = "llama-3.3-70b-versatile";
+    private static String model2Name = "llama-3.1-8b-instant";
+    private static String modelName = "llama-3.3-70b-versatile";
 
     public static String sendApiRequest(String message) throws AIConnectionFailedException {
         try {

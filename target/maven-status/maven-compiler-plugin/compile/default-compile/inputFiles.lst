@@ -1,25 +1,25 @@
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\Character.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\NotFoundController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Exceptions\AIConnectionFailedException.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Managers\AIManager.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\Question.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\LoginFXMLController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\GameEngines\GameEngine.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\PrimaryController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\AiGameController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Utils\Functions.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\FilteredQuestion.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Utils\Global.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\GameController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\GameEngines\AIGameEngine.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\App.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\CharacterController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\SignUpFXMLController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\Answer.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\Player.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\module-info.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Managers\PlayerDAO.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Utils\AudioPlayer.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\controllers\HistoryController.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Models\AnswerEnum.java
-C:\Users\asus\Desktop\Projet Java\Akinator_dev_brancch\Project-Akinator\src\main\java\com\ensa\akinator\Managers\DatabaseManager.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\LoginFXMLController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\Player.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Utils\AudioPlayer.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Managers\AIManager.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\Answer.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\HistoryController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\Character.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\PrimaryController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\FilteredQuestion.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\GameEngines\GameEngine.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\App.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\CharacterController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\GameController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\module-info.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Utils\Functions.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\NotFoundController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\GameEngines\AIGameEngine.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\SignUpFXMLController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Exceptions\AIConnectionFailedException.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Managers\DatabaseManager.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Controllers\AiGameController.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Utils\Global.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\Question.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Managers\PlayerDAO.java
+E:\Programming\School\ENSA\GI-S6\Java\Java-Project-Akinator\src\main\java\com\ensa\akinator\Models\AnswerEnum.java

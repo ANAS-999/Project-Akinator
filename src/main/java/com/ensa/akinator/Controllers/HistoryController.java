@@ -1,4 +1,4 @@
-package com.ensa.akinator.controllers;
+package com.ensa.akinator.Controllers;
 
 import com.ensa.akinator.App;
 import com.ensa.akinator.Managers.PlayerDAO;
@@ -69,6 +69,9 @@ public class HistoryController {
         for (Player p : players) {
             HBox row = new HBox();
             row.getStyleClass().add("leaderboard-row");
+            if (Global.loggedInPlayer != null && p.getUserName().equalsIgnoreCase(Global.loggedInPlayer.getUserName())) {
+                row.getStyleClass().add("logged-in-user-row");
+            }
 
             // Label de Rang
             Label rankLbl = new Label(String.valueOf(rank));

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/game.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.controllers.GameController">
+<AnchorPane prefHeight="750.0" prefWidth="500.0" stylesheets="@styles/game.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ensa.akinator.Controllers.GameController">
     <children>
         <VBox alignment="CENTER" spacing="20.0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" styleClass="game-root">
             <children>
@@ -59,7 +59,7 @@
         </VBox>
         <Button onAction="#handleHomeAction" styleClass="home-btn-icon" text="🏠"
                 AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="15.0" />
-        <Label fx:id="scoreLabel" styleClass="score-header-label" text="Score: 0"
+        <Label fx:id="scoreLabel" styleClass="score-header-label" text="⚡ Score: 0"
                AnchorPane.topAnchor="15.0" AnchorPane.rightAnchor="15.0" />
     </children>
 </AnchorPane>
