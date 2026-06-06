@@ -46,7 +46,8 @@ public class GameController {
                 Global.loggedInPlayer.setScore(0);
                 PlayerDAO.updatePlayerScoreAndHighest(Global.loggedInPlayer);
             }
-            this.gameEngine = new GameEngine("Anas");
+
+            this.gameEngine = new GameEngine(Global.loggedInPlayer);
             this.currentQuestion = gameEngine.getBestQuestion();
             this.questionLabel.setText(this.currentQuestion.getText());
             updateStepLabel();

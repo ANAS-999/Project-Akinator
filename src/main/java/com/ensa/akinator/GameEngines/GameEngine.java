@@ -5,13 +5,14 @@ import java.util.ArrayList;
 
 import com.ensa.akinator.Managers.DatabaseManager;
 import com.ensa.akinator.Models.FilteredQuestion;
+import com.ensa.akinator.Models.Player;
 import com.ensa.akinator.Models.Question;
 import com.ensa.akinator.Models.Character;
 import com.ensa.akinator.Utils.Functions;
 
 public class GameEngine {
     public DatabaseManager db;
-    private String currentPlayer;
+    private Player currentPlayer;
     private ArrayList<Integer> answers;
     private ArrayList<Integer> possibleCharactersIds;
     private ArrayList<Question> askedQuestions;
@@ -19,7 +20,7 @@ public class GameEngine {
     private Integer parentQuestionId;
     private int currentQuestionCount = 0;
 
-    public GameEngine(String currentPlayer) throws SQLException {
+    public GameEngine(Player currentPlayer) throws SQLException {
         this.db = new DatabaseManager();
         this.currentPlayer = currentPlayer;
         this.answers = new ArrayList<>();
@@ -143,7 +144,7 @@ public class GameEngine {
         return this.askedQuestions;
     }
 
-    public String getCurrentPlayer() {
+    public Player getCurrentPlayer() {
         return this.currentPlayer;
     }
 
@@ -155,7 +156,7 @@ public class GameEngine {
     public String toString() {
         return "GameEngine [possibleCharactersIds=" + possibleCharactersIds.size() + ", askedQuestions="
                 + askedQuestions.size()
-                + ", currentPlayer=" + currentPlayer + "]";
+                + ", currentPlayer=" + currentPlayer.getUserName() + "]";
     }
 
 }
